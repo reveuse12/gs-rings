@@ -91,14 +91,6 @@ body {
   padding-top: 5px;
 }
 
-.daimang-configurator-selector-body {
-  background: #fff;
-  height: auto;
-  box-shadow: 1px 1px 8px 2px #dedfe0;
-  border: 2px solid #dedfe0;
-  border-radius: 8px;
-}
-
 .daimang-configurator-body {
   padding: 20px;
   padding-top: 30px;
@@ -191,16 +183,29 @@ div#ring-3d-output.active:after {
   width: 100%;
   background: #fff;
   border: 1px solid #e5e7eb;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .main-step-container {
+    flex-direction: row;
+  }
 }
 
 .box {
-  flex: 1;
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.5rem;
+  padding: 1rem;
   background: #fff;
   position: relative;
+}
+
+@media (min-width: 768px) {
+  .box {
+    flex: 1;
+    padding: 1.5rem;
+  }
 }
 
 .box.active {
@@ -208,7 +213,7 @@ div#ring-3d-output.active:after {
 }
 
 .step-number {
-  width: 32px;
+  min-width: 32px;
   height: 32px;
   border: 2px solid #111827;
   border-radius: 50%;
@@ -217,16 +222,20 @@ div#ring-3d-output.active:after {
   justify-content: center;
   font-weight: 600;
   color: #111827;
+  flex-shrink: 0;
 }
 
 .step-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  /* Allows text to wrap properly */
 }
 
 .step-text small {
   font-size: 0.875rem;
   color: #6b7280;
+  white-space: nowrap;
 }
 
 .step-big-text {
@@ -235,12 +244,20 @@ div#ring-3d-output.active:after {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.price-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .change-link {
   color: #2563eb;
   font-size: 0.875rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .change-link:hover {
@@ -248,14 +265,49 @@ div#ring-3d-output.active:after {
 }
 
 /* Add borders between boxes */
-.box:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: #e5e7eb;
+@media (min-width: 768px) {
+  .box:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #e5e7eb;
+  }
+}
+
+@media (max-width: 767px) {
+  .box:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e5e7eb;
+  }
+}
+
+/* Additional responsive adjustments */
+@media (max-width: 480px) {
+  .box {
+    padding: 0.75rem;
+  }
+
+  .step-number {
+    min-width: 28px;
+    height: 28px;
+    font-size: 0.875rem;
+  }
+
+  .step-text small {
+    font-size: 0.75rem;
+  }
+
+  .step-big-text {
+    font-size: 0.875rem;
+  }
 }
 
 /* main menu end */
@@ -278,14 +330,23 @@ div#ring-3d-output.active:after {
 .box-ring-selection-box {
   border: 1.5px solid transparent;
   font-weight: 500;
+  padding: 10px;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .box-ring-selection-box.active {
   border: 1.5px solid #fea506;
+  border-radius: 50px;
+
 }
 
 .box-ring-img-bundal img {
-  height: 25px;
+  height: 20px;
+  border-radius: 100%;
+  display: block;
+  margin: 0 auto;
 }
 
 

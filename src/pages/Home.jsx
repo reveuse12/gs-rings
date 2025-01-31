@@ -1738,11 +1738,9 @@ function Home() {
           </div>
         </div>
       </div>
-      <div
-        className={`flex flex-wrap main-contant-container active items-start `}
-      >
+      <div className={`flex flex-wrap active items-start `}>
         <div
-          className="w-full lg:w-2/5 p-3.5 sticky top-0 bg-white"
+          className="w-full lg:w-3/5	 p-3.5 top-0 bg-white"
           style={{ zIndex: "98", paddingTop: "20px" }}
         >
           <JewelViewer2
@@ -1830,15 +1828,14 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full lg:w-3/5 p-3.5">
-          <div className="daimang-configurator-selector-body">
-            <div className="daimang-configurator-body">
+        <div className="w-full lg:w-2/5 p-3.5">
+          <div className="">
+            <div className=" pt-30">
               <div className="flex flex-wrap mb-5">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4"></div>
-                <div
-                  className="w-full md:w-3/4 lg:w-full  py-3 bg-gray-100 mb-3 rounded-sm"
-                  style={{ maxWidth: "800px" }}
-                >
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 ">
+                  <h2 className="font-bold text-3xl">Design your own ring</h2>
+                </div>
+                <div className="w-full md:w-3/4 lg:w-full  py-3 bg-gray-100 mb-3 rounded-sm">
                   <div className="">
                     <Swiper
                       spaceBetween={0} // Space between slides
@@ -1873,7 +1870,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   Ring Style and Design
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5 border-b border-gray-200 pb-3">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 border-b border-gray-200 pb-3">
                   <div className="arrow-slider-wrap">
                     <div
                       id="RingStyleDesignPrev"
@@ -1891,7 +1888,6 @@ function Home() {
                       breakpoints={{
                         520: {
                           slidesPerView: 2,
-                          spaceBetween: 0,
                         },
                         900: {
                           slidesPerView: 3,
@@ -1941,7 +1937,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   Side Stone Size
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div
                       id="sideDaimandCaratPrev"
@@ -1997,7 +1993,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   Side Stone Length
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div
                       id="sideDaimandlengthPrev"
@@ -2054,7 +2050,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   Center Stone Shape
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div id="DaimandtypePrev" className="slider-custom-arrow">
                       <FontAwesomeIcon icon={faChevronLeft} />
@@ -2110,7 +2106,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   Center Stone Size
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div id="DaimandCaratPrev" className="slider-custom-arrow">
                       <FontAwesomeIcon icon={faChevronLeft} />
@@ -2160,7 +2156,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   SETTING
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div
                       id="DaimandsettingPrev"
@@ -2226,7 +2222,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   METAL
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div
                       id="RingmetalsettingPrev"
@@ -2286,7 +2282,7 @@ function Home() {
                 <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                   Center Stone Type
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
                     <div
                       id="DaimandStonTypePrev"
@@ -2361,7 +2357,7 @@ function Home() {
                   <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                     Gem {index + 1}
                   </div>
-                  <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 py-3">
+                  <div className="w-full md:w-3/4 lg:w-full xl:w-full py-3">
                     <div className="arrow-slider-wrap">
                       <div
                         id={`sideDaimandStonTypePrev${index}`}
