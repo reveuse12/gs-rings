@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="27.4608mm" height="26.2427mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2746.08 2624.27"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str2 {stroke:#FEFEFE;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .str1 {stroke:#727271;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .str0 {stroke:#2B2A29;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .fil1 {fill:none}
+    .fil0 {fill:#FEFEFE}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2245996179808">
+   <g>
+    <ellipse class="fil0 str0" cx="1373.04" cy="1312.14" rx="640" ry="800"/>
+    <polygon class="fil1 str1" points="1373.04,777.35 1196.46,699.81 1373.04,527.13 1549.62,699.81 "/>
+    <polygon class="fil1 str1" points="909.89,1052.72 918.39,765.82 1196.46,699.81 1135.67,929.74 "/>
+    <polyline class="fil1 str1" points="1373.04,777.35 1135.67,929.74 1012.91,1312.14 909.89,1052.72 "/>
+    <polygon class="fil1 str1" points="1373.04,1846.93 1196.46,1924.47 1373.04,2097.15 1549.62,1924.47 "/>
+    <polygon class="fil1 str1" points="909.89,1571.56 918.39,1858.46 1196.46,1924.47 1135.67,1694.54 "/>
+    <polyline class="fil1 str1" points="775.2,1578.75 909.89,1571.55 737.46,1312.14 909.89,1052.73 775.2,1045.53 "/>
+    <polyline class="fil1 str1" points="1373.04,1846.93 1135.67,1694.54 1012.91,1312.14 909.89,1571.56 "/>
+    <line class="fil1 str1" x1="1148.98" y1="572.45" x2="1196.47" y2= "699.81" />
+    <line class="fil1 str1" x1="1148.98" y1="2051.87" x2="1196.47" y2= "1924.51" />
+    <polygon class="fil1 str1" points="1373.04,1847 1196.46,1924.53 1373.04,2097.21 1549.62,1924.53 "/>
+    <polygon class="fil1 str1" points="909.89,1571.62 918.39,1858.53 1196.46,1924.53 1135.67,1694.61 "/>
+    <line class="fil1 str1" x1="1148.98" y1="2051.89" x2="1196.47" y2= "1924.53" />
+    <polygon class="fil1 str1" points="1836.25,1052.72 1827.75,765.82 1549.68,699.81 1610.47,929.74 "/>
+    <polyline class="fil1 str1" points="1373.1,777.35 1610.47,929.74 1733.23,1312.14 1836.25,1052.72 "/>
+    <polygon class="fil1 str1" points="1836.25,1571.56 1827.75,1858.46 1549.68,1924.47 1610.47,1694.54 "/>
+    <polyline class="fil1 str1" points="1970.95,1578.75 1836.25,1571.55 2008.68,1312.14 1836.25,1052.73 1970.95,1045.53 "/>
+    <polyline class="fil1 str1" points="1373.1,1846.93 1610.47,1694.54 1733.23,1312.14 1836.25,1571.56 "/>
+    <line class="fil1 str1" x1="1597.17" y1="572.45" x2="1549.67" y2= "699.81" />
+    <line class="fil1 str1" x1="1597.17" y1="2051.87" x2="1549.67" y2= "1924.51" />
+    <polygon class="fil1 str1" points="1836.25,1571.62 1827.75,1858.53 1549.68,1924.53 1610.47,1694.61 "/>
+    <line class="fil1 str1" x1="1597.17" y1="2051.89" x2="1549.67" y2= "1924.53" />
+   </g>
+   <circle class="fil0 str0" cx="889.76" cy="757.34" r="96"/>
+   <circle class="fil0 str0" cx="1856.51" cy="757.34" r="96"/>
+   <circle class="fil0 str0" cx="889.76" cy="1867.26" r="96"/>
+   <circle class="fil0 str0" cx="1856.51" cy="1867.26" r="96"/>
+  </g>
+  <rect class="fil1 str2" x="8.82" y="8.82" width="2728.44" height="2606.63"/>
+ </g>
+</svg>

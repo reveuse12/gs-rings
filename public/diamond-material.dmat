@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "version": 4.6,
+    "type": "DiamondMaterial",
+    "generator": "DiamondMaterial.toJSON"
+  },
+  "name": "Gem 01",
+  "uuid": "cb292e3f-76ec-49fa-9f99-fb75db432961",
+  "color": 16777215,
+  "envMapIntensity": 2.19,
+  "envMapIndex": 0,
+  "envMapRotationOffset": 0,
+  "dispersion": 0,
+  "squashFactor": 0.98,
+  "geometryFactor": 0.5,
+  "gammaFactor": 1.31,
+  "absorptionFactor": 1,
+  "reflectivity": 0.28,
+  "refractiveIndex": 2.6,
+  "rayBounces": 5,
+  "diamondOrientedEnvMap": 0,
+  "boostFactors": {
+    "x": 1,
+    "y": 1,
+    "z": 1,
+    "isVector3": true
+  },
+  "transmission": 0,
+  "isDiamondMaterialParameters": true,
+  "type": "DiamondMaterial",
+  "userData": {
+    "separateEnvMapIntensity": true,
+    "rootPath": "https://packs.ijewel3d.com/files/1_gem_diamond_white_2_45a2728698.dmat?localhost",
+    "cloneId": "0_2",
+    "Bloom": {
+      "enable": false
+    },
+    "cloneCount": 0,
+    "_baseMaterial": "cb292e3f-76ec-49fa-9f99-fb75db432961",
+    "uuid": "cb292e3f-76ec-49fa-9f99-fb75db432961"
+  }
+}

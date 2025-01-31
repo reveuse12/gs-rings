@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="27.4608mm" height="26.2427mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2746.08 2624.27"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#FEFEFE;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .str2 {stroke:#898989;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .str1 {stroke:#2B2A29;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .str3 {stroke:#2B2A29;stroke-width:7.62;stroke-miterlimit:2.61313}
+    .fil0 {fill:none}
+    .fil1 {fill:#FEFEFE}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <rect class="fil0 str0" x="8.82" y="8.82" width="2728.44" height="2606.63"/>
+  <g id="_2281615600208">
+   <g>
+    <circle class="fil1 str1" cx="1373.04" cy="1312.14" r="799.98"/>
+    <polygon class="fil0 str2" points="1373.04,864.28 1604.99,741.61 1373.04,516.43 1141.09,741.61 "/>
+    <polygon class="fil0 str2" points="1689.72,995.46 1940.87,1072.34 1936.8,748.38 1612.84,744.31 "/>
+    <polygon class="fil0 str2" points="1820.9,1312.14 1944.12,1544.09 2170.32,1312.14 1944.12,1080.19 "/>
+    <polygon class="fil0 str2" points="1689.72,1628.82 1612.84,1879.97 1936.8,1875.9 1940.87,1551.94 "/>
+    <polygon class="fil0 str2" points="1373.04,1760 1141.09,1883.22 1373.04,2109.42 1604.99,1883.22 "/>
+    <polygon class="fil0 str2" points="1056.36,1628.82 805.21,1551.94 809.28,1875.9 1133.24,1879.97 "/>
+    <polygon class="fil0 str2" points="925.18,1312.14 801.96,1080.19 575.76,1312.14 801.96,1544.09 "/>
+    <polygon class="fil0 str2" points="1056.36,995.46 1133.24,744.31 809.28,748.38 805.21,1072.34 "/>
+    <line class="fil0 str2" x1="1056.35" y1="995.45" x2="1373.04" y2= "864.28" />
+    <line class="fil0 str2" x1="1373.04" y1="864.28" x2="1689.72" y2= "995.46" />
+    <line class="fil0 str2" x1="1689.73" y1="995.45" x2="1820.9" y2= "1312.14" />
+    <line class="fil0 str2" x1="1820.9" y1="1312.14" x2="1689.72" y2= "1628.82" />
+    <line class="fil0 str2" x1="1689.73" y1="1628.83" x2="1373.04" y2= "1760" />
+    <line class="fil0 str2" x1="1373.04" y1="1760" x2="1056.36" y2= "1628.82" />
+    <line class="fil0 str2" x1="1056.35" y1="1628.83" x2="925.18" y2= "1312.14" />
+    <line class="fil0 str2" x1="925.18" y1="1312.14" x2="1056.36" y2= "995.46" />
+   </g>
+   <path class="fil1 str3" d="M667.23 698.51c7.38,-58.29 60.6,-99.54 118.89,-92.16 58.27,7.37 99.54,60.59 92.16,118.88 -7.38,58.29 -60.61,99.54 -118.88,92.16 -58.29,-7.38 -99.55,-60.59 -92.17,-118.88z"/>
+   <path class="fil1 str3" d="M1986.67 606.32c58.28,7.38 99.53,60.6 92.15,118.9 -7.37,58.27 -60.59,99.55 -118.87,92.17 -58.28,-7.38 -99.53,-60.62 -92.16,-118.9 7.38,-58.29 60.59,-99.55 118.88,-92.17z"/>
+   <path class="fil1 str3" d="M2078.85 1925.77c-7.38,58.29 -60.6,99.54 -118.89,92.16 -58.27,-7.37 -99.54,-60.59 -92.16,-118.88 7.38,-58.29 60.61,-99.54 118.88,-92.16 58.29,7.38 99.55,60.59 92.17,118.88z"/>
+   <path class="fil1 str3" d="M759.41 2017.96c-58.28,-7.38 -99.53,-60.6 -92.15,-118.9 7.37,-58.27 60.59,-99.55 118.87,-92.17 58.28,7.38 99.53,60.62 92.15,118.9 -7.37,58.29 -60.58,99.55 -118.87,92.17z"/>
+  </g>
+ </g>
+</svg>

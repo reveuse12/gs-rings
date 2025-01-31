@@ -1,0 +1,66 @@
+{
+  "objects": [
+    {
+      "items": [
+        "http://localhost:5173/assets/all/BEZEL/Cushion Square.glb",
+        "http://localhost:5173/assets/all/BEZEL/Cushion.glb",
+        "http://localhost:5173/assets/all/BEZEL/Emerald.glb",
+        "http://localhost:5173/assets/all/BEZEL/Marquise.glb",
+        "http://localhost:5173/assets/all/BEZEL/Oval.glb",
+        "http://localhost:5173/assets/all/BEZEL/Pear.glb",
+        "http://localhost:5173/assets/all/BEZEL/Princess.glb",
+        "http://localhost:5173/assets/all/BEZEL/Radiant.glb",
+        "http://localhost:5173/assets/all/BEZEL/Round.glb"
+      ],
+      "prefix": "Basket/",
+      "name": "Basket",
+      "title": "",
+      "icon": "",
+      "icons": ["Cushion Halo", "Empty", "Pear Halo"],
+      "titles": ["cushion_halo", "empty", "pear_halo"],
+      "iconFiles": []
+    },
+    {
+      "items": [
+        "http://localhost:5173/assets/all/BEZEL/Shank.glb",
+        "http://localhost:5173/assets/all/BEZEL/Shank 2.glb"
+      ],
+      "prefix": "Ring/",
+      "name": "Ring",
+      "title": "",
+      "icon": "",
+      "icons": ["Alliance", "Baguette"],
+      "titles": ["alliance", "baguette"],
+      "iconFiles": []
+    }
+  ],
+  "materials": [
+    {
+      "items": [
+        "https://3dassetsmaan.s3.ap-south-1.amazonaws.com/VariationConfiguratorTutorials/1/rose.pmat",
+        "https://3dassetsmaan.s3.ap-south-1.amazonaws.com/VariationConfiguratorTutorials/1/white.pmat"
+      ],
+      "icons": ["#988583", "#ffffff"],
+      "iconFiles": [],
+      "titles": ["rose", "white"],
+      "prefix": "Metal/",
+      "name": "Metal",
+      "icon": "",
+      "title": ""
+    },
+    {
+      "items": [
+        "http://localhost:5173/assets/materials/Diamond/brown.dmat",
+        "http://localhost:5173/assets/materials/Diamond/white.dmat"
+      ],
+      "icons": ["#0000ff", "#ffffff"],
+      "iconFiles": [],
+      "titles": ["blue", "white"],
+      "prefix": "Diamond/",
+      "name": "Diamond",
+      "icon": "",
+      "title": ""
+    }
+  ],
+  "type": "VariationConfiguratorPlugin"
+}
