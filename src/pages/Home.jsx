@@ -1722,63 +1722,36 @@ function Home() {
         </div>
         <div className="w-full md:w-3/4 lg:w-full xl:w-full py-3">
           <div className="arrow-slider-wrap">
-            <div
-              id={`sideDaimandStonTypePrev${gemIndex}`}
-              className="slider-custom-arrow"
-            >
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </div>
-
-            <Swiper
-              className="padding-swiper"
-              modules={[Navigation]}
-              navigation={{
-                nextEl: `#sideDaimandStonTypeNext${gemIndex}`,
-                prevEl: `#sideDaimandStonTypePrev${gemIndex}`,
-              }}
-              spaceBetween={0}
-              breakpoints={swiperBreakpoints}
-              loop={false}
-            >
-              {sideDaimandStonTypeitems.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div
-                    className={`box-ring-selection-box`}
-                    onClick={() =>
-                      handlesetsideDaimandStonType(item.name, gemIndex)
-                    }
-                  >
-                    <div
-                      className="box-ring-img-bundal"
-                      style={{
-                        borderRadius: "100%",
-                        ...(gemType === item.name && {
-                          border: "2px solid #fea506",
-                        }),
-                      }}
-                    >
-                      <img
-                        src={item.img}
-                        className="w-18 h-10 rounded-full"
-                        alt={item.name}
-                      />
-                      <img
-                        src="./assets/img/Traditional_Solitaire_Helper.svg"
-                        className="helper-img"
-                        alt="Helper"
-                      />
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            <div
-              id={`sideDaimandStonTypeNext${gemIndex}`}
-              className="slider-custom-arrow"
-            >
-              <FontAwesomeIcon icon={faChevronRight} />
-            </div>
+            {sideDaimandStonTypeitems.map((item, index) => (
+              <div
+                key={index}
+                className={`box-ring-selection-box`}
+                onClick={() =>
+                  handlesetsideDaimandStonType(item.name, gemIndex)
+                }
+              >
+                <div
+                  className="box-ring-img-bundal"
+                  style={{
+                    borderRadius: "100%",
+                    ...(gemType === item.name && {
+                      border: "2px solid #fea506",
+                    }),
+                  }}
+                >
+                  <img
+                    src={item.img}
+                    className="w-18 h-10 rounded-full"
+                    alt={item.name}
+                  />
+                  <img
+                    src="./assets/img/Traditional_Solitaire_Helper.svg"
+                    className="helper-img"
+                    alt="Helper"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -1956,7 +1929,7 @@ function Home() {
               </div>
 
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
+                <div className="w-full md:w-1/4 lg:w-full xl:max-w-[378px] content-center pb-5">
                   View with Diamond shape
                   {selectedSetting && (
                     <span className="ml-2 text-gray-600 text-sm">
@@ -1964,75 +1937,42 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:max-w-[414px] pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div
-                      id="DaimandsettingPrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#DaimandsettingNext", // Custom class for Next button
-                        prevEl: "#DaimandsettingPrev", // Custom class for Prev button
-                      }}
-                    >
-                      {Daimandsettingitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box `}
-                            onClick={() => handlesetDaimandsetting(item)}
-                            Daimandsetting-item={`${item}`}
-                          >
-                            <div
-                              style={{
-                                borderRadius: "100%",
-                                ...(selectedSetting === item.name && {
-                                  border: "2px solid #fea506",
-                                }),
-                              }}
-                              className="box-ring-img-bundal"
-                            >
-                              <img
-                                src="./assets/img/Round_Classic_6_Prong.svg"
-                                className="main-img"
-                              />
-                              <img
-                                src="./assets/img/Round_Classic_6_Prong_Helper.svg"
-                                className="helper-img"
-                              />
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="DaimandsettingNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                    {Daimandsettingitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box `}
+                        onClick={() => handlesetDaimandsetting(item)}
+                        Daimandsetting-item={`${item}`}
+                      >
+                        <div
+                          style={{
+                            borderRadius: "100%",
+                            ...(selectedSetting === item.name && {
+                              border: "2px solid #fea506",
+                            }),
+                          }}
+                          className="box-ring-img-bundal"
+                        >
+                          <img
+                            src="./assets/img/Round_Classic_6_Prong.svg"
+                            className="main-img"
+                          />
+                          <img
+                            src="./assets/img/Round_Classic_6_Prong_Helper.svg"
+                            className="helper-img"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
-                  view with Shank Design
+                  View with Shank Design
                   {selectedRingStyle && (
                     <span className="ml-2 text-gray-600 text-sm">
                       ({selectedRingStyle})
@@ -2041,72 +1981,82 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 border-b border-gray-200 pb-3">
                   <div className="arrow-slider-wrap">
-                    <div
-                      id="RingStyleDesignPrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      navigation={{
-                        nextEl: "#RingStyleDesignNext", // Custom class for Next button
-                        prevEl: "#RingStyleDesignPrev", // Custom class for Prev button
-                      }}
-                      breakpoints={{
-                        520: {
-                          slidesPerView: 2,
-                        },
-                        900: {
-                          slidesPerView: 3,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={true}
-                    >
-                      {RingStyleDesigntypeitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box  ${
-                              RingStyleDesigntype == item.url
-                                ? "active !rounded-lg"
-                                : ""
-                            }`}
-                            onClick={() =>
-                              handlesetRingStyleDesigntype(item.url)
-                            }
-                            RingStyleDesigntype-item={`${item.url}`}
-                          >
-                            <div className="box-ring-img-bundal">
-                              <img
-                                src="./assets/img/Traditional_Solitaire.svg"
-                                className="main-img"
-                              />
-                              <img
-                                src="./assets/img/Traditional_Solitaire_Helper.svg"
-                                className="helper-img"
-                              />
-                            </div>
-                            <div
-                              className="box-ring-selection-item-text"
-                              style={{ fontFamily: '"Agbalumo", sans-serif' }}
-                            >
-                              {item.name}
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="RingStyleDesignNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                    {RingStyleDesigntypeitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box  ${
+                          RingStyleDesigntype == item.url
+                            ? "active !rounded-lg"
+                            : ""
+                        }`}
+                        onClick={() => handlesetRingStyleDesigntype(item.url)}
+                        RingStyleDesigntype-item={`${item.url}`}
+                      >
+                        <div className="box-ring-img-bundal">
+                          <img
+                            src="./assets/img/Traditional_Solitaire.svg"
+                            className="main-img"
+                          />
+                          <img
+                            src="./assets/img/Traditional_Solitaire_Helper.svg"
+                            className="helper-img"
+                          />
+                        </div>
+                        <div
+                          className="box-ring-selection-item-text"
+                          style={{ fontFamily: '"Agbalumo", sans-serif' }}
+                        >
+                          {item.name}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
+
+              {/* Setting section */}
+              <div className="">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
+                  View with Setting Design
+                  {selectedSetting && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      : {selectedSetting}
+                    </span>
+                  )}
+                </div>
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                  <div className="arrow-slider-wrap">
+                    {Daimandsettingitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box ${
+                          Daimandsetting == item ? "active !rounded-lg" : ""
+                        }`}
+                        onClick={() => handlesetDaimandsetting(item)}
+                        Daimandsetting-item={`${item}`}
+                      >
+                        <div className="box-ring-img-bundal">
+                          <img
+                            src="./assets/img/Round_Classic_6_Prong.svg"
+                            className="main-img"
+                          />
+                          <img
+                            src="./assets/img/Round_Classic_6_Prong_Helper.svg"
+                            className="helper-img"
+                          />
+                        </div>
+                        <div
+                          className="box-ring-selection-item-text"
+                          style={{ fontFamily: '"Agbalumo", sans-serif' }}
+                        >
+                          {item}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              {/*  */}
               <div className=" ">
                 <div className="w-full md:w-1/4 lg:w-full xl:full content-center pb-5">
                   Side Stone Size
@@ -2120,53 +2070,16 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div
-                      id="sideDaimandCaratPrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        520: {
-                          slidesPerView: 3,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#sideDaimandCaratNext", // Custom class for Next button
-                        prevEl: "#sideDaimandCaratPrev", // Custom class for Prev button
-                      }}
-                    >
-                      {sideDaimandCaratitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box
+                    {sideDaimandCaratitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box
                         ${sideDaimandCarat == item ? "active" : ""}`}
-                            onClick={() => handlesetsideDaimandCarat(item)}
-                          >
-                            {item}
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="sideDaimandCaratNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                        onClick={() => handlesetsideDaimandCarat(item)}
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -2183,57 +2096,19 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div
-                      id="sideDaimandlengthPrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      spaceBetween={0}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        520: {
-                          slidesPerView: 3,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#sideDaimandlengthNext", // Custom class for Next button
-                        prevEl: "#sideDaimandlengthPrev", // Custom class for Prev button
-                      }}
-                    >
-                      {sideDaimandlengthitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box font-semibold
+                    {sideDaimandlengthitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box font-semibold
                         ${
                           sideDaimandlength == item ? "active !rounded-lg" : ""
                         }`}
-                            style={{ fontFamily: '"Agbalumo", sans-serif' }}
-                            onClick={() => handlesetsideDaimandlength(item)}
-                          >
-                            {item}
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="sideDaimandlengthNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                        style={{ fontFamily: '"Agbalumo", sans-serif' }}
+                        onClick={() => handlesetsideDaimandlength(item)}
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -2249,53 +2124,25 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div id="DaimandtypePrev" className="slider-custom-arrow">
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      slidesPerView={2}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#DaimandtypeNext", // Custom class for Next button
-                        prevEl: "#DaimandtypePrev", // Custom class for Prev button
-                      }}
-                    >
-                      {filteredDiamondtypeitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box  ${
-                              `./assets/all/${Daimandsetting}/${item.url}`
-                                ? "test-active"
-                                : ""
-                            } ${Daimandtype == item.url ? "active" : ""}`}
-                            onClick={() => handlesetDaimandtype(item.url)}
-                            Daimandtype-item={`${item.url}`}
-                          >
-                            <div className="box-ring-img-bundal">
-                              <img src={item.img} className="main-img" />
-                            </div>
-                            <div className="box-ring-selection-item-text">
-                              {item.name}
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div id="DaimandtypeNext" className="slider-custom-arrow">
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                    {filteredDiamondtypeitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box  ${
+                          `./assets/all/${Daimandsetting}/${item.url}`
+                            ? "test-active"
+                            : ""
+                        } ${Daimandtype == item.url ? "active" : ""}`}
+                        onClick={() => handlesetDaimandtype(item.url)}
+                        Daimandtype-item={`${item.url}`}
+                      >
+                        <div className="box-ring-img-bundal">
+                          <img src={item.img} className="main-img" />
+                        </div>
+                        <div className="box-ring-selection-item-text">
+                          {item.name}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -2310,124 +2157,20 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div id="DaimandCaratPrev" className="slider-custom-arrow">
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        520: {
-                          slidesPerView: 3,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#DaimandCaratNext", // Custom class for Next button
-                        prevEl: "#DaimandCaratPrev", // Custom class for Prev button
-                      }}
-                    >
-                      {DaimandCaratitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box
+                    {DaimandCaratitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`box-ring-selection-box
                         ${DaimandCarat == item ? "active" : ""}`}
-                            onClick={() => handlesetDaimandCarat(item)}
-                          >
-                            {item}
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div id="DaimandCaratNext" className="slider-custom-arrow">
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                        onClick={() => handlesetDaimandCarat(item)}
+                      >
+                        {item}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-              <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
-                  View with Setting Design
-                  {selectedSetting && (
-                    <span className="ml-2 text-gray-600 text-sm">
-                      : {selectedSetting}
-                    </span>
-                  )}
-                </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
-                  <div className="arrow-slider-wrap">
-                    <div
-                      id="DaimandsettingPrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#DaimandsettingNext", // Custom class for Next button
-                        prevEl: "#DaimandsettingPrev", // Custom class for Prev button
-                      }}
-                    >
-                      {Daimandsettingitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`box-ring-selection-box ${
-                              Daimandsetting == item ? "active !rounded-lg" : ""
-                            }`}
-                            onClick={() => handlesetDaimandsetting(item)}
-                            Daimandsetting-item={`${item}`}
-                          >
-                            <div className="box-ring-img-bundal">
-                              <img
-                                src="./assets/img/Round_Classic_6_Prong.svg"
-                                className="main-img"
-                              />
-                              <img
-                                src="./assets/img/Round_Classic_6_Prong_Helper.svg"
-                                className="helper-img"
-                              />
-                            </div>
-                            <div
-                              className="box-ring-selection-item-text"
-                              style={{ fontFamily: '"Agbalumo", sans-serif' }}
-                            >
-                              {item}
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="DaimandsettingNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   METAL
@@ -2439,59 +2182,26 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div
-                      id="RingmetalsettingPrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 5,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                      navigation={{
-                        nextEl: "#RingmetalsettingNext", // Custom class for Next button
-                        prevEl: "#RingmetalsettingPrev", // Custom class for Prev button
-                      }}
-                    >
-                      {Ringmetalitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={`metal-selection box-ring-selection-box`}
-                            onClick={() => handlesetRingmetal(item.name)}
-                          >
-                            <div
-                              style={{
-                                height: "20px",
-                                width: "20px",
-                                backgroundColor: item.code,
-                                borderRadius: "50%",
-                                margin: "0 auto 10px",
-                                ...(Ringmetal === item.name && {
-                                  border: "2px solid #fea506",
-                                }),
-                              }}
-                            ></div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="RingmetalsettingNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                    {Ringmetalitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`metal-selection box-ring-selection-box`}
+                        onClick={() => handlesetRingmetal(item.name)}
+                      >
+                        <div
+                          style={{
+                            height: "20px",
+                            width: "20px",
+                            backgroundColor: item.code,
+                            borderRadius: "50%",
+                            margin: "0 auto 10px",
+                            ...(Ringmetal === item.name && {
+                              border: "2px solid #fea506",
+                            }),
+                          }}
+                        ></div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -2506,70 +2216,32 @@ function Home() {
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
-                    <div
-                      id="DaimandStonTypePrev"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronLeft} />
-                    </div>
-                    <Swiper
-                      className="padding-swiper"
-                      modules={[Navigation]}
-                      navigation={{
-                        nextEl: "#DaimandStonTypeNext", // Custom class for Next button
-                        prevEl: "#DaimandStonTypePrev", // Custom class for Prev button
-                      }}
-                      spaceBetween={0}
-                      breakpoints={{
-                        0: {
-                          slidesPerView: 2,
-                          spaceBetween: 0,
-                        },
-                        520: {
-                          slidesPerView: 3,
-                          spaceBetween: 0,
-                        },
-                        900: {
-                          slidesPerView: 4,
-                          spaceBetween: 0,
-                        },
-                      }}
-                      loop={false}
-                    >
-                      {DaimandStonTypeitems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                          <div
-                            className={` box-ring-selection-box `}
-                            onClick={() => handlesetDaimandStonType(item.name)}
-                          >
-                            <div
-                              className="box-ring-img-bundal"
-                              style={{
-                                borderRadius: "100%",
-                                ...(DaimandStonType === item.name && {
-                                  border: "2px solid #fea506",
-                                }),
-                              }}
-                            >
-                              <img
-                                src={item.img}
-                                className="w-18 h-10 rounded-full"
-                              />
-                              <img
-                                src="./assets/img/Traditional_Solitaire_Helper.svg"
-                                className="w-18 h-10 rounded-full"
-                              />
-                            </div>
-                          </div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
-                    <div
-                      id="DaimandStonTypeNext"
-                      className="slider-custom-arrow"
-                    >
-                      <FontAwesomeIcon icon={faChevronRight} />
-                    </div>
+                    {DaimandStonTypeitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={` box-ring-selection-box `}
+                        onClick={() => handlesetDaimandStonType(item.name)}
+                      >
+                        <div
+                          className="box-ring-img-bundal"
+                          style={{
+                            borderRadius: "100%",
+                            ...(DaimandStonType === item.name && {
+                              border: "2px solid #fea506",
+                            }),
+                          }}
+                        >
+                          <img
+                            src={item.img}
+                            className="w-18 h-10 rounded-full"
+                          />
+                          <img
+                            src="./assets/img/Traditional_Solitaire_Helper.svg"
+                            className="w-18 h-10 rounded-full"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
