@@ -2529,26 +2529,57 @@ function Home() {
                 <GemItem key={index} gemIndex={gemIndex} />
               ))}
             </div>
-
             {/* Pricing & Button */}
-            <div className="flex flex-col my-8 max-w-[378px] max-h-[83px] md:flex-col md:items-left gap-4 md:justify-between">
-              <div className="text-center font-normal text-4xl md:text-left md:text-3xl pb-4 md:pb-0">
-                {pricing}
-                <span className="text-sm font-thin"> (Setting Only)</span>
+            <div className="flex flex-col my-4 md:my-8 w-full px-4 md:px-0 md:max-w-[378px]">
+              {/* Pricing */}
+              <div className="flex flex-col items-center md:items-start mb-4 md:mb-6">
+                <div className="text-2xl md:text-4xl font-normal text-center md:text-left">
+                  {pricing}
+                  <span className="text-xs md:text-sm font-thin ml-1">
+                    (Setting Only)
+                  </span>
+                </div>
               </div>
+
+              {/* Button & Heart */}
               {checkuserformifream && (
-                <div className="flex flex-col md:flex-row gap-4 items-center">
+                <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4 w-full">
                   <button
                     type="button"
-                    className="mt-4 md:mt-0 w-full md:w-8/12 bg-amber-500 text-white py-2 px-6 rounded-md hover:bg-amber-600 transition"
+                    className="w-full sm:w-4/5 bg-amber-500 text-white py-2.5 px-4 md:px-6 rounded-md hover:bg-amber-600 transition-colors disabled:opacity-50 text-sm md:text-base"
                     onClick={() => handleContactSubmit(true)}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? "Loading..." : "Choose the setting"}
+                    {isSubmitting ? (
+                      <span className="flex items-center justify-center gap-2">
+                        <svg
+                          className="animate-spin h-5 w-5"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
+                        </svg>
+                        Loading...
+                      </span>
+                    ) : (
+                      "Choose the setting"
+                    )}
                   </button>
-                  <span className="text-2xl w-1/3">
+
+                  <button className="text-2xl sm:w-1/5 p-2 hover:text-amber-500 transition-colors">
                     <i className="fa-regular fa-heart"></i>
-                  </span>
+                  </button>
                 </div>
               )}
             </div>
@@ -2582,7 +2613,6 @@ function Home() {
                 </div>
               </div>
             </div> */}
-
             <InfoSection />
           </div>
         </div>
