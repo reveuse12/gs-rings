@@ -1743,14 +1743,20 @@ function Home() {
               {sideDaimandStonTypeitems.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div
-                    className={`box-ring-selection-box ${
-                      gemType === item.name ? "active" : ""
-                    }`}
+                    className={`box-ring-selection-box`}
                     onClick={() =>
                       handlesetsideDaimandStonType(item.name, gemIndex)
                     }
                   >
-                    <div className="box-ring-img-bundal">
+                    <div
+                      className="box-ring-img-bundal"
+                      style={{
+                        borderRadius: "100%",
+                        ...(gemType === item.name && {
+                          border: "2px solid #fea506",
+                        }),
+                      }}
+                    >
                       <img
                         src={item.img}
                         className="w-18 h-10 rounded-full"
@@ -2016,8 +2022,10 @@ function Home() {
                       {RingStyleDesigntypeitems.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div
-                            className={`box-ring-selection-box ${
-                              RingStyleDesigntype == item.url ? "active" : ""
+                            className={`box-ring-selection-box  ${
+                              RingStyleDesigntype == item.url
+                                ? "active !rounded-lg"
+                                : ""
                             }`}
                             onClick={() =>
                               handlesetRingStyleDesigntype(item.url)
@@ -2336,7 +2344,7 @@ function Home() {
                         <SwiperSlide key={index}>
                           <div
                             className={`box-ring-selection-box ${
-                              Daimandsetting == item ? "active" : ""
+                              Daimandsetting == item ? "active !rounded-lg" : ""
                             }`}
                             onClick={() => handlesetDaimandsetting(item)}
                             Daimandsetting-item={`${item}`}
@@ -2351,7 +2359,10 @@ function Home() {
                                 className="helper-img"
                               />
                             </div>
-                            <div className="box-ring-selection-item-text">
+                            <div
+                              className="box-ring-selection-item-text"
+                              style={{ fontFamily: '"Agbalumo", sans-serif' }}
+                            >
                               {item}
                             </div>
                           </div>
@@ -2406,8 +2417,7 @@ function Home() {
                       {Ringmetalitems.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div
-                            className={`metal-selection box-ring-selection-box
-                        ${Ringmetal == item.name ? "active" : ""}`}
+                            className={`metal-selection box-ring-selection-box`}
                             onClick={() => handlesetRingmetal(item.name)}
                           >
                             <div
@@ -2417,6 +2427,9 @@ function Home() {
                                 backgroundColor: item.code,
                                 borderRadius: "50%",
                                 margin: "0 auto 10px",
+                                ...(Ringmetal === item.name && {
+                                  border: "2px solid #fea506",
+                                }),
                               }}
                             ></div>
                           </div>
@@ -2476,12 +2489,18 @@ function Home() {
                       {DaimandStonTypeitems.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div
-                            className={` box-ring-selection-box ${
-                              DaimandStonType == item.name ? "active" : ""
-                            }`}
+                            className={` box-ring-selection-box `}
                             onClick={() => handlesetDaimandStonType(item.name)}
                           >
-                            <div className="box-ring-img-bundal">
+                            <div
+                              className="box-ring-img-bundal"
+                              style={{
+                                borderRadius: "100%",
+                                ...(DaimandStonType === item.name && {
+                                  border: "2px solid #fea506",
+                                }),
+                              }}
+                            >
                               <img
                                 src={item.img}
                                 className="w-18 h-10 rounded-full"
