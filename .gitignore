@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 public
-__MACOSX
 
 # Editor directories and files
 .vscode/*

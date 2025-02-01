@@ -2429,53 +2429,50 @@ function Home() {
                 </div>
               ))}
             </div>
-            <div className="daimang-configurator-footer">
-              <div className="flex flex-wrap">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+            <div className="daimang-configurator-footer text-sm px-4 py-6 md:px-8 lg:px-12">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start">
+                {/* Matching Band Title */}
+                <div className="w-full lg:w-1/4 text-center lg:text-left font-medium pb-4 lg:pb-0">
                   MATCHING BAND
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-3/4 pb-5 content-center">
-                  <div className="flex flex-wrap">
-                    <div className="w-full md:w-2/4 content-center">
-                      <div className="matching-band-selection border-0 md:border-r-2">
-                        <span
-                          className={`${matchingBand == 1 ? "active" : ""}`}
-                          onClick={() => handleMatchingBand(1)}
-                        >
-                          1
-                        </span>
-                        <span
-                          className={`${matchingBand == 2 ? "active" : ""}`}
-                          onClick={() => handleMatchingBand(2)}
-                        >
-                          2
-                        </span>
-                        <span
-                          className={`${matchingBand == 3 ? "active" : ""}`}
-                          onClick={() => handleMatchingBand(3)}
-                        >
-                          3
-                        </span>
+
+                {/* Matching Band & Pricing Section */}
+                <div className="w-full lg:w-3/4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Matching Band Selection */}
+                    <div className="flex justify-center lg:justify-start">
+                      <div className="matching-band-selection border-0 md:border-r-2 pr-4">
+                        {[1, 2, 3].map((num) => (
+                          <span
+                            key={num}
+                            className={`px-4 py-2 cursor-pointer ${
+                              matchingBand === num
+                                ? "active bg-gray-300 rounded-md"
+                                : ""
+                            }`}
+                            onClick={() => handleMatchingBand(num)}
+                          >
+                            {num}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                    <div className="w-full md:w-2/4 pl-0 md:pl-3 pt-4 md:pt-0">
-                      <div className="flex flex-wrap pricing-section-body">
-                        <div className="w-full md:w-2/4 pricing-section">
-                          <div>TOTAL: {pricing}</div>
-                        </div>
-                        <div className="w-full md:w-2/4 pt-3 md:pt-0">
-                          {checkuserformifream && (
-                            <button
-                              type="button"
-                              className="next-button"
-                              onClick={() => handleContactSubmit(true)}
-                              disabled={isSubmitting}
-                            >
-                              {isSubmitting ? "Loading..." : "Next"}
-                            </button>
-                          )}
-                        </div>
+
+                    {/* Pricing & Button */}
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                      <div className="text-center md:text-left font-semibold">
+                        TOTAL: {pricing}
                       </div>
+                      {checkuserformifream && (
+                        <button
+                          type="button"
+                          className="mt-4 md:mt-0 w-full md:w-auto bg-amber-500 text-white py-2 px-6 rounded-md hover:bg-amber-600 transition"
+                          onClick={() => handleContactSubmit(true)}
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? "Loading..." : "Next"}
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -2545,112 +2542,112 @@ function Home() {
             >
               <i className="fas fa-times"></i>
             </button>
-            {retailer === "true" ? (
-              <div className="w-full">
-                <div className="popup-left">
-                  <h2 className="text-2xl font-bold text-gray-800">
-                    Enter Your Contact Details
-                  </h2>
+            {/* {retailer === "true" ? ( */}
+            <div className="w-full">
+              <div className="popup-left">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Enter Your Contact Details
+                </h2>
+              </div>
+              <form
+                className="text-left"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleCreateTransactionSubmit();
+                }}
+              >
+                <div className="input-group mb-3">
+                  <label htmlFor="contactName">Name</label>
+                  <input
+                    type="text"
+                    id="contactName"
+                    value={contactName}
+                    onChange={(e) => setContactName(e.target.value)}
+                    required
+                  />
                 </div>
-                <form
-                  className="text-left"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleCreateTransactionSubmit();
-                  }}
+                <div className="input-group mb-3">
+                  <label htmlFor="contactPhone">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="contactPhone"
+                    value={contactPhone}
+                    pattern="[0-9]{10}"
+                    title="Please enter a valid 10-digit phone number"
+                    maxLength="10"
+                    minLength="10"
+                    onChange={(e) => setContactPhone(e.target.value)}
+                    required
+                  />
+                </div>
+                <div className="input-group mb-3">
+                  <label htmlFor="contactEmail">Email ID</label>
+                  <input
+                    type="email"
+                    id="contactEmail"
+                    value={contactEmail}
+                    onChange={(e) => setContactEmail(e.target.value)}
+                    required
+                  />
+                </div>
+                <input type="hidden" id="retailerid" value={retailerid} />
+                <button
+                  type="submit"
+                  className="action-btn block flex items-center"
+                  disabled={isLoading}
                 >
-                  <div className="input-group mb-3">
-                    <label htmlFor="contactName">Name</label>
-                    <input
-                      type="text"
-                      id="contactName"
-                      value={contactName}
-                      onChange={(e) => setContactName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="input-group mb-3">
-                    <label htmlFor="contactPhone">Phone Number</label>
-                    <input
-                      type="tel"
-                      id="contactPhone"
-                      value={contactPhone}
-                      pattern="[0-9]{10}"
-                      title="Please enter a valid 10-digit phone number"
-                      maxLength="10"
-                      minLength="10"
-                      onChange={(e) => setContactPhone(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="input-group mb-3">
-                    <label htmlFor="contactEmail">Email ID</label>
-                    <input
-                      type="email"
-                      id="contactEmail"
-                      value={contactEmail}
-                      onChange={(e) => setContactEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <input type="hidden" id="retailerid" value={retailerid} />
-                  <button
-                    type="submit"
-                    className="action-btn block flex items-center"
-                    disabled={isLoading}
-                  >
-                    {isLoading ? <span>Loading...</span> : "Submit"}
-                  </button>
-                </form>
+                  {isLoading ? <span>Loading...</span> : "Submit"}
+                </button>
+              </form>
+            </div>
+            {/* ) : ( */}
+            <div className="w-full">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Select a Retailer
+                </h2>
+                <p className="text-gray-600 mt-2">
+                  Choose from our list of authorized retailers
+                </p>
               </div>
-            ) : (
-              <div className="w-full">
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">
-                    Select a Retailer
-                  </h2>
-                  <p className="text-gray-600 mt-2">
-                    Choose from our list of authorized retailers
-                  </p>
-                </div>
 
-                <div className="overflow-x-auto">
-                  <table className="w-full border-collapse">
-                    <tbody>
-                      {retailers.map((retailer) => (
-                        <tr
-                          key={retailer.ID}
-                          className="border-b hover:bg-gray-50"
-                        >
-                          <td className="p-3">
-                            <div>
-                              <div className="font-medium text-left">
-                                {retailer.RetailerName}
-                              </div>
-                              <div className="text-gray-600 flex items-center mt-1 text-left">
-                                <i className="fas fa-map-marker-alt mr-2"></i>
-                                {retailer.RetailerCity}
-                              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <tbody>
+                    {retailers.map((retailer) => (
+                      <tr
+                        key={retailer.ID}
+                        className="border-b hover:bg-gray-50"
+                      >
+                        <td className="p-3">
+                          <div>
+                            <div className="font-medium text-left">
+                              {retailer.RetailerName}
                             </div>
-                          </td>
-                          <td className="p-3 flex justify-end">
-                            <button
-                              className="bg-orange-800 text-white px-4 py-2 rounded-lg hover:bg-orange-900 transition-colors duration-200 flex items-center"
-                              onClick={() =>
-                                handleRetailerSelect("test@" + retailer.ID)
-                              }
-                            >
-                              Select
-                              <i className="fas fa-chevron-right ml-2"></i>
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                            <div className="text-gray-600 flex items-center mt-1 text-left">
+                              <i className="fas fa-map-marker-alt mr-2"></i>
+                              {retailer.RetailerCity}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="p-3 flex justify-end">
+                          <button
+                            className="bg-orange-800 text-white px-4 py-2 rounded-lg hover:bg-orange-900 transition-colors duration-200 flex items-center"
+                            onClick={() =>
+                              handleRetailerSelect("test@" + retailer.ID)
+                            }
+                          >
+                            Select
+                            <i className="fas fa-chevron-right ml-2"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            )}
+            </div>
+            {/* )} */}
           </div>
         </div>
       )}
