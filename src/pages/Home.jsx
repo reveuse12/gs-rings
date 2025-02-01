@@ -1861,22 +1861,7 @@ function Home() {
             // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
             // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
           />
-          <div className="flex">
-            <JewelViewer2
-              diamonds={DaimandStonType}
-              sideDaimandStonType={sideDaimandStonType}
-              metal={Ringmetal}
-              // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
-              // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
-            />
-            <JewelViewer2
-              diamonds={DaimandStonType}
-              sideDaimandStonType={sideDaimandStonType}
-              metal={Ringmetal}
-              // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
-              // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
-            />
-          </div>
+
           {retailersapi == "true" &&
             ifremcheck &&
             CheckUserRegister == false && (
@@ -2174,8 +2159,11 @@ function Home() {
                       {sideDaimandlengthitems.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div
-                            className={`box-ring-selection-box
-                        ${sideDaimandlength == item ? "active" : ""}`}
+                            className={`box-ring-selection-box font-semibold
+                        ${
+                          sideDaimandlength == item ? "active !rounded-lg" : ""
+                        }`}
+                            style={{ fontFamily: '"Agbalumo", sans-serif' }}
                             onClick={() => handlesetsideDaimandlength(item)}
                           >
                             {item}
