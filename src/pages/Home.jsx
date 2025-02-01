@@ -1696,26 +1696,8 @@ function Home() {
   return (
     <div className="daimand-body active">
       {loading && <Loader />}
-      <header
-        className="header flex justify-center"
-        style={{
-          background: "url(top_header_bg.png) no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          margin: "0px -15px 0px -15px",
-        }}
-      >
-        <div className="logo p-5 text-center">
-          <img src="logo2.png" alt="Logo" style={{ height: "120px" }} />
-        </div>
-      </header>
-      <div
-        style={{
-          backgroundColor: "rgb(108, 34, 93)",
-          padding: "13px 15px",
-          margin: "0px -15px 50px -15px",
-        }}
-      >
+
+      <div>
         <div
           className="flex justify-end mx-auto"
           style={{ maxWidth: "1300px" }}
@@ -1730,7 +1712,7 @@ function Home() {
 
       <div className="progress-bar flex flex-col md:flex-row items-center justify-between w-full border border-gray-300">
         {/* Design Your Ring Step */}
-        <div className="step w-full md:w-[220px] flex items-center justify-center p-4">
+        <div className="step w-full md:w-[220px]  flex items-center justify-center p-4">
           <h3 className="text-sm md:text-base lg:text-lg">Design Your Ring</h3>
         </div>
 
