@@ -1942,18 +1942,18 @@ function Home() {
                     {Daimandsettingitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box `}
+                        className={`box-ring-selection-box`}
                         onClick={() => handlesetDaimandsetting(item)}
-                        Daimandsetting-item={`${item}`}
+                        daimandsetting-item={`${item}`}
                       >
                         <div
+                          className="box-ring-img-bundal"
                           style={{
                             borderRadius: "100%",
-                            ...(selectedSetting === item.name && {
+                            ...(Daimandsetting === item && {
                               border: "2px solid #fea506",
                             }),
                           }}
-                          className="box-ring-img-bundal"
                         >
                           <img
                             src="./assets/img/Round_Classic_6_Prong.svg"
@@ -1970,6 +1970,7 @@ function Home() {
                 </div>
               </div>
 
+              {/* shank design */}
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   View with Shank Design
@@ -2056,7 +2057,44 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {/*  */}
+
+              {/* Metals */}
+              <div className="">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
+                  Metal
+                  {selectedMetal && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      ({selectedMetal})
+                    </span>
+                  )}
+                </div>
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                  <div className="arrow-slider-wrap">
+                    {Ringmetalitems.map((item, index) => (
+                      <div
+                        key={index}
+                        className={`metal-selection box-ring-selection-box`}
+                        onClick={() => handlesetRingmetal(item.name)}
+                      >
+                        <div
+                          style={{
+                            height: "20px",
+                            width: "20px",
+                            backgroundColor: item.code,
+                            borderRadius: "50%",
+                            margin: "0 auto 10px",
+                            ...(Ringmetal === item.name && {
+                              border: "2px solid #fea506",
+                            }),
+                          }}
+                        ></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/*side stone size  */}
               <div className=" ">
                 <div className="w-full md:w-1/4 lg:w-full xl:full content-center pb-5">
                   Side Stone Size
@@ -2083,6 +2121,8 @@ function Home() {
                   </div>
                 </div>
               </div>
+
+              {/* side stone length */}
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Side Stone Length
@@ -2113,6 +2153,7 @@ function Home() {
                 </div>
               </div>
 
+              {/* Center Stone */}
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Center Stone Shape
@@ -2146,6 +2187,8 @@ function Home() {
                   </div>
                 </div>
               </div>
+
+              {/* Center Stone Size */}
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Center Stone Size
@@ -2171,40 +2214,7 @@ function Home() {
                 </div>
               </div>
 
-              <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
-                  METAL
-                  {selectedMetal && (
-                    <span className="ml-2 text-gray-600 text-sm">
-                      ({selectedMetal})
-                    </span>
-                  )}
-                </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
-                  <div className="arrow-slider-wrap">
-                    {Ringmetalitems.map((item, index) => (
-                      <div
-                        key={index}
-                        className={`metal-selection box-ring-selection-box`}
-                        onClick={() => handlesetRingmetal(item.name)}
-                      >
-                        <div
-                          style={{
-                            height: "20px",
-                            width: "20px",
-                            backgroundColor: item.code,
-                            borderRadius: "50%",
-                            margin: "0 auto 10px",
-                            ...(Ringmetal === item.name && {
-                              border: "2px solid #fea506",
-                            }),
-                          }}
-                        ></div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {/* Center Stone Type */}
               <div className="" id="GEM01">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Center Stone Type
