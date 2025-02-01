@@ -341,12 +341,12 @@ div#ring-3d-output.active:after {
   display: inline-block;
   text-align: center;
   transition: all 0.3s ease;
+  border-radius: 100px;
 }
 
 .box-ring-selection-box.active {
   border: 1.5px solid #fea506;
-  border-radius: 50px;
-
+  border-radius: 100px;
 }
 
 .box-ring-img-bundal img {
@@ -520,7 +520,6 @@ body .slider-custom-arrow svg {
   margin-right: 10px;
   height: 35px !important;
   width: 35px !important;
-  display: inline-block;
   border-radius: 8px;
   opacity: 1;
   box-sizing: border-box;
@@ -535,9 +534,7 @@ body .slider-custom-arrow svg {
   background-color: #fff;
 }
 
-.matching-band-selection {
-  border-right: 1px solid #000;
-}
+
 
 .next-button {
   text-transform: uppercase;

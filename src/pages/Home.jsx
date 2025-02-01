@@ -23,6 +23,7 @@ import ".././App.css";
 import html2canvas from "html2canvas";
 import DiamondList from "./DiamondList.jsx";
 import Swal from "sweetalert2"; // Import SweetAlert
+import InfoSection from "../component/InfoSection.jsx";
 
 const JewelViewer2 = ({
   diamonds,
@@ -1765,7 +1766,7 @@ function Home() {
 
       <div className={`flex flex-wrap active items-start `}>
         <div
-          className="w-full lg:w-3/5	 p-3.5 top-0 bg-white"
+          className="w-full lg:w-3/5 p-3.5 top-0 bg-white"
           style={{ zIndex: "98", paddingTop: "20px" }}
         >
           <JewelViewer2
@@ -2423,7 +2424,7 @@ function Home() {
                   }`}
                   id={`GEM0${index + 2}`}
                 >
-                  <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                  <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                     Gem {index + 1}
                     {sideDaimandStonType[testitem] && (
                       <span className="ml-2 text-gray-600 text-sm">
@@ -2503,19 +2504,40 @@ function Home() {
                 </div>
               ))}
             </div>
-            <div className="daimang-configurator-footer text-sm px-4 py-6 md:px-8 lg:px-12">
+
+            {/* Pricing & Button */}
+            <div className="flex flex-col my-8 max-w-[378px] md:flex-col md:items-left gap-4 md:justify-between">
+              <div className="text-center font-normal text-4xl md:text-left md:text-3xl pb-4 md:pb-0">
+                {pricing}
+                <span className="text-sm font-thin"> (Setting Only)</span>
+              </div>
+              {checkuserformifream && (
+                <div className="flex flex-col md:flex-row gap-4 items-center">
+                  <button
+                    type="button"
+                    className="mt-4 md:mt-0 w-full md:w-8/12 bg-amber-500 text-white py-2 px-6 rounded-md hover:bg-amber-600 transition"
+                    onClick={() => handleContactSubmit(true)}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Loading..." : "Choose the setting"}
+                  </button>
+                  <span className="text-2xl w-1/3">
+                    <i className="fa-regular fa-heart"></i>
+                  </span>
+                </div>
+              )}
+            </div>
+            {/* TODO: Add matching band selection */}
+            {/* <div className="daimang-configurator-footer text-sm px-4 py-6 md:px-8 lg:px-12">
               <div className="flex flex-col lg:flex-row items-center lg:items-start">
-                {/* Matching Band Title */}
-                <div className="w-full lg:w-1/4 text-center lg:text-left font-medium pb-4 lg:pb-0">
+                <div className="w-full text-center lg:text-left font-medium pb-4 lg:pb-0">
                   MATCHING BAND
                 </div>
 
-                {/* Matching Band & Pricing Section */}
-                <div className="w-full lg:w-3/4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Matching Band Selection */}
+                <div className="w-full lg:w-1/2">
+                  <div className="grid grid-cols-1 gap-6">
                     <div className="flex justify-center lg:justify-start">
-                      <div className="matching-band-selection border-0 md:border-r-2 pr-4">
+                      <div className="matching-band-selection border-0 pr-4">
                         {[1, 2, 3].map((num) => (
                           <span
                             key={num}
@@ -2531,27 +2553,12 @@ function Home() {
                         ))}
                       </div>
                     </div>
-
-                    {/* Pricing & Button */}
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                      <div className="text-center md:text-left font-semibold">
-                        TOTAL: {pricing}
-                      </div>
-                      {checkuserformifream && (
-                        <button
-                          type="button"
-                          className="mt-4 md:mt-0 w-full md:w-auto bg-amber-500 text-white py-2 px-6 rounded-md hover:bg-amber-600 transition"
-                          onClick={() => handleContactSubmit(true)}
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? "Loading..." : "Next"}
-                        </button>
-                      )}
-                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
+
+            <InfoSection />
           </div>
         </div>
       </div>
