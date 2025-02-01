@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import {
   ViewerApp,
   AssetManagerPlugin,
@@ -1694,6 +1694,91 @@ function Home() {
     (item) => item === DaimandCarat
   );
 
+  const swiperBreakpoints = useMemo(
+    () => ({
+      0: { slidesPerView: 2, spaceBetween: 0 },
+      520: { slidesPerView: 3, spaceBetween: 0 },
+      900: { slidesPerView: 4, spaceBetween: 0 },
+    }),
+    []
+  );
+
+  const GemItem = ({ gemIndex }) => {
+    const gemId = `GEM ${gemIndex}`;
+    const isGrayOut = Daimandsetting === "Classic Prong";
+    const gemType = sideDaimandStonType[gemIndex];
+
+    return (
+      <div
+        key={gemId}
+        id={gemId}
+        className={isGrayOut ? "gray-out-active" : ""}
+      >
+        <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+          Gem {Number(gemIndex) + 1}
+          {gemType && (
+            <span className="ml-2 text-gray-600 text-sm">: {gemType}</span>
+          )}
+        </div>
+        <div className="w-full md:w-3/4 lg:w-full xl:w-full py-3">
+          <div className="arrow-slider-wrap">
+            <div
+              id={`sideDaimandStonTypePrev${gemIndex}`}
+              className="slider-custom-arrow"
+            >
+              <FontAwesomeIcon icon={faChevronLeft} />
+            </div>
+
+            <Swiper
+              className="padding-swiper"
+              modules={[Navigation]}
+              navigation={{
+                nextEl: `#sideDaimandStonTypeNext${gemIndex}`,
+                prevEl: `#sideDaimandStonTypePrev${gemIndex}`,
+              }}
+              spaceBetween={0}
+              breakpoints={swiperBreakpoints}
+              loop={false}
+            >
+              {sideDaimandStonTypeitems.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className={`box-ring-selection-box ${
+                      gemType === item.name ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      handlesetsideDaimandStonType(item.name, gemIndex)
+                    }
+                  >
+                    <div className="box-ring-img-bundal">
+                      <img
+                        src={item.img}
+                        className="w-18 h-10 rounded-full"
+                        alt={item.name}
+                      />
+                      <img
+                        src="./assets/img/Traditional_Solitaire_Helper.svg"
+                        className="helper-img"
+                        alt="Helper"
+                      />
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <div
+              id={`sideDaimandStonTypeNext${gemIndex}`}
+              className="slider-custom-arrow"
+            >
+              <FontAwesomeIcon icon={faChevronRight} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="daimand-body active">
       {loading && <Loader />}
@@ -1776,6 +1861,22 @@ function Home() {
             // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
             // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
           />
+          <div className="flex">
+            <JewelViewer2
+              diamonds={DaimandStonType}
+              sideDaimandStonType={sideDaimandStonType}
+              metal={Ringmetal}
+              // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
+              // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
+            />
+            <JewelViewer2
+              diamonds={DaimandStonType}
+              sideDaimandStonType={sideDaimandStonType}
+              metal={Ringmetal}
+              // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
+              // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
+            />
+          </div>
           {retailersapi == "true" &&
             ifremcheck &&
             CheckUserRegister == false && (
@@ -2416,97 +2517,14 @@ function Home() {
                 </div>
               </div>
 
-              {gemcount.map((testitem, index) => (
-                <div
-                  key={`gem-${index}`}
-                  className={` ${
-                    Daimandsetting == "Classic Prong" ? "gray-out-active" : ""
-                  }`}
-                  id={`GEM0${index + 2}`}
-                >
-                  <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
-                    Gem {index + 1}
-                    {sideDaimandStonType[testitem] && (
-                      <span className="ml-2 text-gray-600 text-sm">
-                        : {sideDaimandStonType[testitem]}
-                      </span>
-                    )}
-                  </div>
-                  <div className="w-full md:w-3/4 lg:w-full xl:w-full py-3">
-                    <div className="arrow-slider-wrap">
-                      <div
-                        id={`sideDaimandStonTypePrev${index}`}
-                        className="slider-custom-arrow"
-                      >
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                      </div>
-                      <Swiper
-                        className="padding-swiper"
-                        modules={[Navigation]}
-                        navigation={{
-                          nextEl: `#sideDaimandStonTypeNext${index}`, // Custom class for Next button
-                          prevEl: `#sideDaimandStonTypePrev${index}`, // Custom class for Prev button
-                        }}
-                        spaceBetween={0}
-                        breakpoints={{
-                          0: {
-                            slidesPerView: 2,
-                            spaceBetween: 0,
-                          },
-                          520: {
-                            slidesPerView: 3,
-                            spaceBetween: 0,
-                          },
-                          900: {
-                            slidesPerView: 4,
-                            spaceBetween: 0,
-                          },
-                        }}
-                        loop={false}
-                      >
-                        {sideDaimandStonTypeitems.map((item, index) => (
-                          <SwiperSlide key={index}>
-                            <div
-                              className={`box-ring-selection-box ${
-                                sideDaimandStonType[testitem] == item.name
-                                  ? "active"
-                                  : ""
-                              }`}
-                              onClick={() =>
-                                handlesetsideDaimandStonType(
-                                  item.name,
-                                  testitem
-                                )
-                              }
-                            >
-                              <div className="box-ring-img-bundal">
-                                <img
-                                  src={item.img}
-                                  className="w-18 h-10 rounded-full"
-                                />
-                                <img
-                                  src="./assets/img/Traditional_Solitaire_Helper.svg"
-                                  className="helper-img"
-                                />
-                              </div>
-                            </div>
-                          </SwiperSlide>
-                        ))}
-                      </Swiper>
-                      <div
-                        id={`sideDaimandStonTypeNext${index}`}
-                        className="slider-custom-arrow"
-                      >
-                        <FontAwesomeIcon icon={faChevronRight} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              {/* Gems */}
+              {gemcount.map((gemIndex, index) => (
+                <GemItem key={index} gemIndex={gemIndex} />
               ))}
             </div>
 
             {/* Pricing & Button */}
-            <div className="flex flex-col my-8 max-w-[378px] md:flex-col md:items-left gap-4 md:justify-between">
+            <div className="flex flex-col my-8 max-w-[378px] max-h-[83px] md:flex-col md:items-left gap-4 md:justify-between">
               <div className="text-center font-normal text-4xl md:text-left md:text-3xl pb-4 md:pb-0">
                 {pricing}
                 <span className="text-sm font-thin"> (Setting Only)</span>

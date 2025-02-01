@@ -1,6 +1,6 @@
 const InfoSection = () => {
   return (
-    <div className="mt-4 max-w-[378px] ">
+    <div className="mt-4 max-w-[378px]  max-h-[83px] ">
       {/* Contact Information */}
       <div className="flex  flex-col md:flex-row bg-gray-100 py-8 px-4 items-center space-y-4 md:space-y-0 md:justify-between mb-4">
         <div className="flex items-center space-x-2">
