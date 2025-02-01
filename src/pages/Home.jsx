@@ -2356,7 +2356,7 @@ function Home() {
               </div>
               <div className="">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
-                  SETTING
+                  View with Setting Design
                   {selectedSetting && (
                     <span className="ml-2 text-gray-600 text-sm">
                       : {selectedSetting}
