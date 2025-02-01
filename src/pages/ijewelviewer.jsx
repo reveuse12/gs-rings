@@ -49,6 +49,8 @@ const JewelViewer2 = () => {
               console.error("Model loading error: ", error);
               if (tarunElement) {
                 tarunElement.classList.remove('active'); // Ensure 'active' is removed even if loading fails
+                // Optional: Add user-friendly error message
+                tarunElement.innerHTML = `<p>Error loading 3D model: ${error.message}</p>`;
               }
             });
           });
