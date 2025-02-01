@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-// import {
-//   ViewerApp,
-//   AssetManagerPlugin,
-//   TonemapPlugin,
-//   timeout,
-// } from "https://dist.pixotronics.com/webgi/runtime/bundle-0.9.1.mjs";
+import {
+  ViewerApp,
+  AssetManagerPlugin,
+  TonemapPlugin,
+  timeout,
+} from "https://dist.pixotronics.com/webgi/runtime/bundle-0.9.1.mjs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-// import * as THREE from "three";
+import * as THREE from "three";
 // import * as THREE from 'three';
 // import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
 // import 'swiper/swiper-bundle.min.css';
@@ -19,7 +19,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import ".././App.css";
-// import html2canvas from "html2canvas";
+import html2canvas from "html2canvas";
 import DiamondList from "./DiamondList.jsx";
 import Swal from "sweetalert2"; // Import SweetAlert
 
@@ -1660,6 +1660,38 @@ function Home() {
     await handlesetPutOnMyWebsite();
   };
 
+  // selected ring name
+  const selectedRingStyle =
+    RingStyleDesigntypeitems.find((item) => item.url === RingStyleDesigntype)
+      ?.name || "";
+
+  // sideDaimandCaratitems
+  const selectedsideDaimandCarat = sideDaimandCaratitems.find(
+    (item) => item === sideDaimandCarat
+  );
+
+  // selected diamond name
+  const selectedDiamond =
+    Diamondtypeitems.find((item) => item.url === Daimandtype)?.name || "";
+
+  // selected diamond setting name
+  const selectedSetting =
+    Daimandsettingitems.find((item) => item === Daimandsetting) || "";
+
+  // selected metal name
+  const selectedMetal =
+    Ringmetalitems.find((item) => item.name === Ringmetal)?.name || "";
+
+  // selected diamond stone type name
+  const selectedDaimandStonType =
+    DaimandStonTypeitems.find((item) => item.name === DaimandStonType)?.name ||
+    "";
+
+  // selected diamond carat
+  const selectedDaimandCarat = DaimandCaratitems.find(
+    (item) => item === DaimandCarat
+  );
+
   return (
     <div className="daimand-body active">
       {loading && <Loader />}
@@ -1867,8 +1899,13 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   Ring Style and Design
+                  {selectedRingStyle && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      ({selectedRingStyle})
+                    </span>
+                  )}
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 border-b border-gray-200 pb-3">
                   <div className="arrow-slider-wrap">
@@ -1934,8 +1971,15 @@ function Home() {
                 </div>
               </div>
               <div className=" ">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:full content-center pb-5 font-medium">
                   Side Stone Size
+                  {
+                    selectedsideDaimandCarat && (
+                      <span className="ml-2 text-gray-600 text-sm">
+                        : {selectedsideDaimandCarat}
+                      </span>
+                    ) // Display selected side stone size
+                  }
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -1990,8 +2034,15 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   Side Stone Length
+                  {
+                    sideDaimandlength && (
+                      <span className="ml-2 text-gray-600 text-sm">
+                        : {sideDaimandlength}
+                      </span>
+                    ) // Display selected side stone length
+                  }
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -2047,8 +2098,13 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   Center Stone Shape
+                  {selectedDiamond && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      : {selectedDiamond}
+                    </span>
+                  )}
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -2103,8 +2159,13 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   Center Stone Size
+                  {selectedDaimandCarat && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      : {selectedDaimandCarat}
+                    </span>
+                  )}
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -2153,8 +2214,13 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   SETTING
+                  {selectedSetting && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      : {selectedSetting}
+                    </span>
+                  )}
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -2219,8 +2285,13 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   METAL
+                  {selectedMetal && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      ({selectedMetal})
+                    </span>
+                  )}
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -2279,8 +2350,13 @@ function Home() {
                 </div>
               </div>
               <div className="" id="GEM01">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
                   Center Stone Type
+                  {selectedDaimandStonType && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      : {selectedDaimandStonType}
+                    </span>
+                  )}
                 </div>
                 <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
                   <div className="arrow-slider-wrap">
@@ -2345,7 +2421,7 @@ function Home() {
                   </div>
                 </div>
               </div>
-              {}
+
               {gemcount.map((testitem, index) => (
                 <div
                   key={`gem-${index}`}
@@ -2356,6 +2432,11 @@ function Home() {
                 >
                   <div className="w-full md:w-1/4 lg:w-full xl:w-1/4 content-center pb-5 font-medium">
                     Gem {index + 1}
+                    {sideDaimandStonType[testitem] && (
+                      <span className="ml-2 text-gray-600 text-sm">
+                        : {sideDaimandStonType[testitem]}
+                      </span>
+                    )}
                   </div>
                   <div className="w-full md:w-3/4 lg:w-full xl:w-full py-3">
                     <div className="arrow-slider-wrap">
