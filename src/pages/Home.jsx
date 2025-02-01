@@ -7,6 +7,7 @@ import {
 } from "https://dist.pixotronics.com/webgi/runtime/bundle-0.9.1.mjs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import ringIcon from "../assets/ring.png";
 import * as THREE from "three";
 // import * as THREE from 'three';
 // import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
@@ -1726,50 +1727,60 @@ function Home() {
           )}
         </div>
       </div>
-      <div
-        className={`main-step-container
-                    ${activestep == 2 || activestep == 3 ? "active" : ""}`}
-      >
-        <div className={`box`}>
-          <div className="step-text">
-            <div className="step-big-text">Design your ring</div>
-          </div>
+
+      <div className="progress-bar flex flex-col md:flex-row items-center justify-between w-full border border-gray-300">
+        {/* Design Your Ring Step */}
+        <div className="step w-full md:w-[220px] flex items-center justify-center p-4">
+          <h3 className="text-sm md:text-base lg:text-lg">Design Your Ring</h3>
         </div>
-        <div
-          className={`box
-                    ${
-                      activestep == 1 || activestep == 2 || activestep == 3
-                        ? "active"
-                        : ""
-                    }`}
-        >
-          <div className="step-number">1</div>
-          <div className="step-text">
-            <small>Setting </small>
-            <div className="step-big-text">Name</div>
+
+        {/* Steps with active states */}
+        {[1, 2, 3].map((step) => (
+          <div
+            key={step}
+            className={`step w-full md:w-[346px] flex items-center justify-between p-4 ${
+              activestep >= step ? "bg-zinc-200" : ""
+            }`}
+          >
+            <div className="content flex items-center gap-3">
+              {/* Step Number */}
+              <div className="icon text-xl md:text-2xl">{step}</div>
+              <div className="content-text">
+                {/* Step Title */}
+                <h3 className="text-sm">
+                  {step === 1
+                    ? "Setting"
+                    : step === 2
+                    ? "Choose a Diamond"
+                    : "Ring (Select Size)"}
+                </h3>
+
+                {/* Conditional Subtitle */}
+                {step === 1 && <p className="text-xs">Nadia - $1,290</p>}
+
+                {/* Conditional Action Link */}
+                <a href="#" className="text-xs underline">
+                  {step === 1
+                    ? "Change"
+                    : step === 2
+                    ? "Browse Diamond"
+                    : "Select Size"}
+                </a>
+              </div>
+            </div>
+
+            {/* Step Icon */}
+            <div className="step-icon">
+              <img
+                src={ringIcon}
+                alt="Complete Icon"
+                className="w-8 h-8 md:w-12 md:h-12"
+              />
+            </div>
           </div>
-        </div>
-        <div
-          className={`box
-                    ${activestep == 2 || activestep == 3 ? "active" : ""}`}
-        >
-          <div className="step-number">2</div>
-          <div className="step-text">
-            <small>Choose a</small>
-            <div className="step-big-text">Diamond</div>
-          </div>
-        </div>
-        <div
-          className={`box
-                    ${activestep == 3 ? "active" : ""}`}
-        >
-          <div className="step-number">3</div>
-          <div className="step-text">
-            <small>Completed a</small>
-            <div className="step-big-text">Ring (Select Size)</div>
-          </div>
-        </div>
+        ))}
       </div>
+
       <div className={`flex flex-wrap active items-start `}>
         <div
           className="w-full lg:w-3/5	 p-3.5 top-0 bg-white"

@@ -18,9 +18,16 @@ body {
 }
 
 .daimand-body {
+  max-width: 1290px;
   width: 100%;
-  padding: 0 15px;
+  margin: 0 auto;
+  padding: 0 32px;
 }
+
+.progress-bar .step:not(:last-child):hover {
+  background-color: #E2E2E2;
+}
+
 
 .row {
   display: flex;
