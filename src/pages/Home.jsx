@@ -1802,7 +1802,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="progress-bar flex flex-col md:flex-row items-center justify-between w-full border border-gray-300">
+      <div className="progress-bar mt-8 flex flex-col md:flex-row items-center justify-between w-full border border-gray-300">
         {/* Design Your Ring Step */}
         <div className="step w-full md:w-[220px]  flex items-center justify-center p-4">
           <h3 className="text-sm md:text-base lg:text-lg">Design Your Ring</h3>
