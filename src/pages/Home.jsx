@@ -7,12 +7,14 @@ import {
 } from "https://dist.pixotronics.com/webgi/runtime/bundle-0.9.1.mjs";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import ringIcon from "../assets/ring.png";
+import ringIcon from "../assets/ringIcon.svg";
+import diamondIcon from "../assets/diamond.svg";
+import ring from "../assets/ring.svg";
 import * as THREE from "three";
 // import * as THREE from 'three';
 // import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
 // import 'swiper/swiper-bundle.min.css';
-
+import './home.css';
 import "swiper/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -1757,6 +1759,7 @@ function Home() {
       </div>
     );
   };
+  const images = [ringIcon, diamondIcon, ring];
 
   return (
     <div className="daimand-body active">
@@ -1786,10 +1789,12 @@ function Home() {
           <div
             key={step}
             className={`step w-full md:w-[346px] flex items-center justify-between p-4 ${
-              activestep >= step ? "bg-zinc-200" : ""
+              activestep >= step
+                ? "bg-[#F7F7F7] arrow-border-active"
+                : ""
             }`}
           >
-            <div className="content flex items-center gap-3">
+            <div className="content flex items-center gap-3 md:gap-4">
               {/* Step Number */}
               <div className="icon text-xl md:text-2xl">{step}</div>
               <div className="content-text">
@@ -1798,8 +1803,8 @@ function Home() {
                   {step === 1
                     ? "Setting"
                     : step === 2
-                    ? "Choose a Diamond"
-                    : "Ring (Select Size)"}
+                      ? "Choose a Diamond"
+                      : "Ring (Select Size)"}
                 </h3>
 
                 {/* Conditional Subtitle */}
@@ -1810,18 +1815,18 @@ function Home() {
                   {step === 1
                     ? "Change"
                     : step === 2
-                    ? "Browse Diamond"
-                    : "Select Size"}
+                      ? "Browse Diamond"
+                      : "Select Size"}
                 </a>
               </div>
             </div>
 
-            {/* Step Icon */}
+            {/* Step Image - Different image for each step */}
             <div className="step-icon">
               <img
-                src={ringIcon}
-                alt="Complete Icon"
-                className="w-8 h-8 md:w-12 md:h-12"
+                src={images[step - 1]} // Dynamically select the image based on the step index
+                alt="Step Icon"
+                className={step === 1 ? "w-[50px] h-[50px]" : "w-[34px] h-[25px]"} 
               />
             </div>
           </div>
@@ -1837,8 +1842,8 @@ function Home() {
             diamonds={DaimandStonType}
             sideDaimandStonType={sideDaimandStonType}
             metal={Ringmetal}
-            // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
-            // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
+          // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
+          // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
           />
 
           {retailersapi == "true" &&
@@ -1929,7 +1934,7 @@ function Home() {
               </div>
 
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:max-w-[378px] content-center pb-5">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   View with Diamond shape
                   {selectedSetting && (
                     <span className="ml-2 text-gray-600 text-sm">
@@ -1937,7 +1942,7 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:max-w-[414px] pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5">
                   <div className="arrow-slider-wrap">
                     {Daimandsettingitems.map((item, index) => (
                       <div
@@ -1980,16 +1985,15 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 border-b border-gray-200 pb-3">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 pb-3">
                   <div className="arrow-slider-wrap">
                     {RingStyleDesigntypeitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box  ${
-                          RingStyleDesigntype == item.url
+                        className={`box-ring-selection-box  ${RingStyleDesigntype == item.url
                             ? "active !rounded-lg"
                             : ""
-                        }`}
+                          }`}
                         onClick={() => handlesetRingStyleDesigntype(item.url)}
                         RingStyleDesigntype-item={`${item.url}`}
                       >
@@ -2025,14 +2029,13 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5">
                   <div className="arrow-slider-wrap">
                     {Daimandsettingitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box ${
-                          Daimandsetting == item ? "active !rounded-lg" : ""
-                        }`}
+                        className={`box-ring-selection-box ${Daimandsetting == item ? "active !rounded-lg" : ""
+                          }`}
                         onClick={() => handlesetDaimandsetting(item)}
                         Daimandsetting-item={`${item}`}
                       >
@@ -2068,7 +2071,7 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5">
                   <div className="arrow-slider-wrap">
                     {Ringmetalitems.map((item, index) => (
                       <div
@@ -2106,7 +2109,7 @@ function Home() {
                     ) // Display selected side stone size
                   }
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5">
                   <div className="arrow-slider-wrap">
                     {sideDaimandCaratitems.map((item, index) => (
                       <div
@@ -2134,15 +2137,14 @@ function Home() {
                     ) // Display selected side stone length
                   }
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 ">
                   <div className="arrow-slider-wrap">
                     {sideDaimandlengthitems.map((item, index) => (
                       <div
                         key={index}
                         className={`box-ring-selection-box font-semibold
-                        ${
-                          sideDaimandlength == item ? "active !rounded-lg" : ""
-                        }`}
+                        ${sideDaimandlength == item ? "active !rounded-lg" : ""
+                          }`}
                         style={{ fontFamily: '"Agbalumo", sans-serif' }}
                         onClick={() => handlesetsideDaimandlength(item)}
                       >
@@ -2163,16 +2165,15 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5 ">
                   <div className="arrow-slider-wrap">
                     {filteredDiamondtypeitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box  ${
-                          `./assets/all/${Daimandsetting}/${item.url}`
+                        className={`box-ring-selection-box  ${`./assets/all/${Daimandsetting}/${item.url}`
                             ? "test-active"
                             : ""
-                        } ${Daimandtype == item.url ? "active" : ""}`}
+                          } ${Daimandtype == item.url ? "active" : ""}`}
                         onClick={() => handlesetDaimandtype(item.url)}
                         Daimandtype-item={`${item.url}`}
                       >
@@ -2198,7 +2199,7 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5">
                   <div className="arrow-slider-wrap">
                     {DaimandCaratitems.map((item, index) => (
                       <div
@@ -2224,7 +2225,7 @@ function Home() {
                     </span>
                   )}
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5">
                   <div className="arrow-slider-wrap">
                     {DaimandStonTypeitems.map((item, index) => (
                       <div
@@ -2243,10 +2244,6 @@ function Home() {
                         >
                           <img
                             src={item.img}
-                            className="w-18 h-10 rounded-full"
-                          />
-                          <img
-                            src="./assets/img/Traditional_Solitaire_Helper.svg"
                             className="w-18 h-10 rounded-full"
                           />
                         </div>
@@ -2315,46 +2312,10 @@ function Home() {
                 </div>
               )}
             </div>
-            {/* TODO: Add matching band selection */}
-            {/* <div className="daimang-configurator-footer text-sm px-4 py-6 md:px-8 lg:px-12">
-              <div className="flex flex-col lg:flex-row items-center lg:items-start">
-                <div className="w-full text-center lg:text-left font-medium pb-4 lg:pb-0">
-                  MATCHING BAND
-                </div>
-
-                <div className="w-full lg:w-1/2">
-                  <div className="grid grid-cols-1 gap-6">
-                    <div className="flex justify-center lg:justify-start">
-                      <div className="matching-band-selection border-0 pr-4">
-                        {[1, 2, 3].map((num) => (
-                          <span
-                            key={num}
-                            className={`px-4 py-2 cursor-pointer ${
-                              matchingBand === num
-                                ? "active bg-gray-300 rounded-md"
-                                : ""
-                            }`}
-                            onClick={() => handleMatchingBand(num)}
-                          >
-                            {num}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
             <InfoSection />
           </div>
         </div>
       </div>
-      {/* <div className={`flex flex-wrap main-contant-container ${ activestep === 2 ? "active" : "" }`}>
-        <div className="popup">
-          <h1>Diamond Selection</h1>
-          <DiamondList diamonds={diamonds} setActiveStep={setactivestep} />
-        </div>
-      </div> */}
       {activestep === 2 && (
         <div
           className="popup-overlay w-full p-4"
@@ -2373,7 +2334,6 @@ function Home() {
               <i className="fas fa-times"></i>
             </button>
             <h2 className="text-2xl font-bold text-gray-800"></h2>
-            {/* <h1>Diamond Selection</h1> */}
             <DiamondList diamonds={diamonds} setActiveStep={setactivestep} />
           </div>
         </div>
@@ -2673,7 +2633,7 @@ function Home() {
       {showRegisterPopup && (
         <div
           className="popup-overlay"
-          onClick={(e) => {
+          onClick={() => {
             if (e.target.className === "popup-overlay") {
               setshowRegisterPopup(false);
               if (retailersapi === "false") {
