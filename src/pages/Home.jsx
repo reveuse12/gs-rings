@@ -1951,42 +1951,88 @@ function Home() {
             <div className=" pt-30">
               <div className="flex flex-wrap mb-5">
                 <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 ">
-                  <h2 className="font-bold text-3xl">Design your own ring</h2>
+                  <h2 className=" text-3xl">Design your own ring</h2>
                 </div>
-                <div className="w-full md:w-3/4 lg:w-full  py-3 bg-gray-100 mb-3 rounded-sm">
-                  <div className="">
+              </div>
+
+              <div className="">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
+                  View with Diamond shape
+                  {selectedSetting && (
+                    <span className="ml-2 text-gray-600 text-sm">
+                      : {selectedSetting}
+                    </span>
+                  )}
+                </div>
+                <div className="w-full md:w-3/4 lg:w-full xl:w-full pb-5  border-b border-gray-200">
+                  <div className="arrow-slider-wrap">
+                    <div
+                      id="DaimandsettingPrev"
+                      className="slider-custom-arrow"
+                    >
+                      <FontAwesomeIcon icon={faChevronLeft} />
+                    </div>
                     <Swiper
-                      spaceBetween={0} // Space between slides
+                      className="padding-swiper"
+                      modules={[Navigation]}
                       breakpoints={{
                         0: {
                           slidesPerView: 2,
                           spaceBetween: 0,
                         },
                         900: {
-                          slidesPerView: 4,
+                          slidesPerView: 5,
                           spaceBetween: 0,
                         },
                       }}
-                      loop={false} // Enable infinite loop
+                      loop={false}
+                      navigation={{
+                        nextEl: "#DaimandsettingNext", // Custom class for Next button
+                        prevEl: "#DaimandsettingPrev", // Custom class for Prev button
+                      }}
                     >
-                      {Shankbandtypeitems.map((item, index) => (
+                      {Daimandsettingitems.map((item, index) => (
                         <SwiperSlide key={index}>
                           <div
-                            className={`shank-band-type
-                      ${Shankbandtype == item ? "active" : ""}`}
-                            onClick={() => handlesetShankbandtype(item)}
+                            className={`box-ring-selection-box `}
+                            onClick={() => handlesetDaimandsetting(item)}
+                            Daimandsetting-item={`${item}`}
                           >
-                            {item}
+                            <div
+                              style={{
+                                borderRadius: "100%",
+                                ...(selectedSetting === item.name && {
+                                  border: "2px solid #fea506",
+                                }),
+                              }}
+                              className="box-ring-img-bundal"
+                            >
+                              <img
+                                src="./assets/img/Round_Classic_6_Prong.svg"
+                                className="main-img"
+                              />
+                              <img
+                                src="./assets/img/Round_Classic_6_Prong_Helper.svg"
+                                className="helper-img"
+                              />
+                            </div>
                           </div>
                         </SwiperSlide>
                       ))}
                     </Swiper>
+                    <div
+                      id="DaimandsettingNext"
+                      className="slider-custom-arrow"
+                    >
+                      <FontAwesomeIcon icon={faChevronRight} />
+                    </div>
                   </div>
                 </div>
               </div>
+
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
-                  Ring Style and Design
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
+                  view with Shank Design
                   {selectedRingStyle && (
                     <span className="ml-2 text-gray-600 text-sm">
                       ({selectedRingStyle})
@@ -2042,7 +2088,10 @@ function Home() {
                                 className="helper-img"
                               />
                             </div>
-                            <div className="box-ring-selection-item-text">
+                            <div
+                              className="box-ring-selection-item-text"
+                              style={{ fontFamily: '"Agbalumo", sans-serif' }}
+                            >
                               {item.name}
                             </div>
                           </div>
@@ -2059,7 +2108,7 @@ function Home() {
                 </div>
               </div>
               <div className=" ">
-                <div className="w-full md:w-1/4 lg:w-full xl:full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:full content-center pb-5">
                   Side Stone Size
                   {
                     selectedsideDaimandCarat && (
@@ -2122,7 +2171,7 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Side Stone Length
                   {
                     sideDaimandlength && (
@@ -2188,8 +2237,9 @@ function Home() {
                   </div>
                 </div>
               </div>
+
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Center Stone Shape
                   {selectedDiamond && (
                     <span className="ml-2 text-gray-600 text-sm">
@@ -2250,7 +2300,7 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Center Stone Size
                   {selectedDaimandCarat && (
                     <span className="ml-2 text-gray-600 text-sm">
@@ -2305,7 +2355,7 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   SETTING
                   {selectedSetting && (
                     <span className="ml-2 text-gray-600 text-sm">
@@ -2379,7 +2429,7 @@ function Home() {
                 </div>
               </div>
               <div className="">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   METAL
                   {selectedMetal && (
                     <span className="ml-2 text-gray-600 text-sm">
@@ -2446,7 +2496,7 @@ function Home() {
                 </div>
               </div>
               <div className="" id="GEM01">
-                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5 font-medium">
+                <div className="w-full md:w-1/4 lg:w-full xl:w-full content-center pb-5">
                   Center Stone Type
                   {selectedDaimandStonType && (
                     <span className="ml-2 text-gray-600 text-sm">
