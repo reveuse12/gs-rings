@@ -26,9 +26,8 @@ import html2canvas from "html2canvas";
 import DiamondList from "./DiamondList.jsx";
 import Swal from "sweetalert2"; // Import SweetAlert
 import InfoSection from "../component/InfoSection.jsx";
-import JewelViewer2 from "./ijewelviewer.jsx";
 
-const JewelViewer = ({
+const JewelViewer2 = ({
   diamonds,
   sideDaimandStonType,
   metal,
@@ -71,10 +70,6 @@ const JewelViewer = ({
           loadingScreen.enabled = false;
         }
 
-        // console.log(material.variations.length > 0 ? material.variations.map(variation => variation.name) : 'No variations found');
-        // console.log(material.variations[0].materials[0]);
-        // console.log(materialConfiguratorPlugin);
-        // materialConfiguratorPlugin.applyVariation('Metal 01', 2);
         const config = await viewer.addPlugin(VariationConfiguratorPlugin);
         await config.importPath("/assets/config.json");
         await viewer
@@ -189,39 +184,9 @@ const JewelViewer = ({
               });
           }, 1000);
         });
-        // document.querySelectorAll(".material").forEach((el) => {
-        //   const index = parseInt(el.getAttribute("data-index"));
-        //   const category = config.variations.materials.find((cat) => cat.name === el.getAttribute("data-category"));
-        //   const type = "materials";
-        //   el.addEventListener("click", async () => {
-        //     await config.applyVariation(category, index, type);
-        //   });
-        //   if(index === 0) el.click()
-        // });
-        // document.querySelectorAll(".diamond").forEach((el) => {
-        //   const index = parseInt(el.getAttribute("data-index"));
-        //   const category = config.variations.materials.find((cat) => cat.name === el.getAttribute("data-category"));
-        //   const type = "materials";
-        //   el.addEventListener("click", async () => {
-        //     await config.applyVariation(category, index, type);
-        //   });
-        //   if(index === 0) el.click()
-        // });
+
         viewer.scene.background = "#FFFFFF";
-        // document.querySelectorAll('.box-ring-selection-box').forEach(element => {
-        //   element.addEventListener('click', async () => {
-        //     console.log(viewer.RootScene);
-        //     // console.log(viewer.scene.activeCamera.position);
-        //     let activecamera = viewer.scene.activeCamera.position;
-        //     const Daimandsetting = document.querySelector('.box-ring-selection-box.active[Daimandsetting-item]').getAttribute('Daimandsetting-item');
-        //     const RingStyleDesigntype = document.querySelector('.box-ring-selection-box.active[RingStyleDesigntype-item]').getAttribute('RingStyleDesigntype-item');
-        //     const Daimandtype = document.querySelector('.box-ring-selection-box.active[Daimandtype-item]').getAttribute('Daimandtype-item');
-        //     await Promise.all([
-        //       viewer.load(`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`),
-        //       // viewer.load(`./assets/all/${Daimandsetting}/${Daimandtype}`),
-        //     ]).then(() => {}).catch((error) => {});
-        //   });
-        // });
+
         const Daimandsetting = document
           .querySelector(".box-ring-selection-box.active[Daimandsetting-item]")
           .getAttribute("Daimandsetting-item");
@@ -233,12 +198,7 @@ const JewelViewer = ({
         const Daimandtype = document
           .querySelector(".box-ring-selection-box.active[Daimandtype-item]")
           .getAttribute("Daimandtype-item");
-        // await Promise.all([
-        //   viewer.load(shankurl),
-        //   viewer.load(`./assets/all/${Daimandsetting}/${Daimandtype}`),
-        // ]).then(() => {
-        //   const threeScene = viewer.scene;
-        // console.log(threeScene);
+
         if (tarunElement) {
           setTimeout(() => {
             tarunElement.classList.remove("active");
@@ -248,118 +208,6 @@ const JewelViewer = ({
             document.querySelector(".daimand-body").classList.remove("active");
           }, 5000);
         }
-        //   modelsize = new THREE.Box3().setFromObject(threeScene).getSize(new THREE.Vector3());
-        //   viewer.scene.activeCamera.position.set(modelsize.x / 2, modelsize.y + 2, modelsize.z * 10);
-
-        //   document.getElementById('viewer-3d').setAttribute('cameraX', `${modelsize.x}`);
-        //   document.getElementById('viewer-3d').setAttribute('cameraY', `${modelsize.y}`);
-        //   document.getElementById('viewer-3d').setAttribute('cameraZ', `${modelsize.z}`);
-
-        // }).catch((error) => {
-        //   // console.error("Model loading error: ", error);
-        //   if (tarunElement) {
-        //     tarunElement.classList.remove('active');
-        //   }
-        // });
-        // const dMat = await viewer
-        //   .getManager()
-        //   .importer.importSinglePath("./assets/diamond-material.dmat");
-        // console.log(dMat);
-
-        // const diamonds = [
-        //   "Gem_Oval",
-        //   "Gem_Princess",
-        //   "Gem_Cushion",
-        //   "Gem_Baguette",
-        //   "Gem_Emerald",
-        //   "Gem_Asscher",
-        //   "Gem_Elongated",
-        //   "Cushion",
-        //   "Elongated",
-        //   "Gem_Pear",
-        //   "Gem_Marquise",
-        //   "Gem_Heart",
-        //   "Gem_Round_2",
-        //   "Gem_Oval_2",
-        //   "Gem_Princess_2",
-        //   "Gem_Cushion_2",
-        //   "Gem_Baguette_2",
-        //   "Gem_Emerald_2",
-        //   "Gem_Asscher_2",
-        //   "Gem_Elongated",
-        //   "Cushion_2",
-        //   "Gem_Elongated Cushion_2",
-        //   "Gem_Pear_2",
-        //   "Gem_Marquise_2",
-        //   "Marquise",
-        //   "Gem_Heart_2",
-        //   "Gem_Round_3",
-        //   "Gem_Oval_3",
-        //   "Gem_Princess_3",
-        //   "Gem_Cushion_3",
-        //   "Gem_Baguette_3",
-        //   "Gem_Emerald_3",
-        //   "Gem_Asscher_3",
-        //   "Gem_Elongated",
-        //   "Cushion_3",
-        //   "Gem_Elongated Cushion_3",
-        //   "Gem_Pear_3",
-        //   "Gem_Marquise_3",
-        //   "Gem_Heart_3",
-        //   "Diamond_Round",
-        //   "Round_Diamond",
-        //   "Diamond_Oval",
-        //   "Diamond_Princess",
-        //   "Diamond_Cushion",
-        //   "Diamond_Baguette",
-        //   "Diamond_Emerald",
-        //   "Diamond_Asscher",
-        //   "Diamond_Elongated",
-        //   "Diamond_Pear",
-        //   "Diamond_Marquise",
-        //   "Diamond_Heart",
-        //   "Diamond_Round_2",
-        //   "Diamond_Oval_2",
-        //   "Diamond_Princess_2",
-        //   "Diamond_Cushion_2",
-        //   "Diamond_Baguette_2",
-        //   "Diamond_Emerald_2",
-        //   "Diamond_Asscher_2",
-        //   "Diamond_Elongated",
-        //   "Diamond_Elongated Cushion_2",
-        //   "Diamond_Pear_2",
-        //   "Diamond_Marquise_2",
-        //   "Marquise",
-        //   "Diamond_Heart_2",
-        //   "Diamond_Round_3",
-        //   "Diamond_Oval_3",
-        //   "Diamond_Princess_3",
-        //   "Diamond_Cushion_3",
-        //   "Diamond_Baguette_3",
-        //   "Diamond_Emerald_3",
-        //   "Diamond_Asscher_3",
-        //   "Diamond_Elongated",
-        //   "Cushion_3",
-        //   "Diamond_Elongated Cushion_3",
-        //   "Diamond_Pear_3",
-        //   "Diamond_Marquise_3",
-        //   "Diamond_Heart_3",
-        //   "Gem Count On Curve Gem",
-        // ];
-
-        // diamonds.forEach((diamond) => {
-        //   const meshes = viewer.scene.findObjectsByName(diamond);
-
-        //   meshes.forEach((mesh) => {
-        //     // Prepare the meshes where the material needs to be applied.
-        //     viewer
-        //       .getPlugin(DiamondPlugin)
-        //       .prepareDiamondMesh(mesh, { cacheKey: "d1", normalMapRes: 512 });
-
-        //     // Assign the material
-        //     mesh.setMaterial(dMat);
-        //   });
-        // });
 
         document
           .getElementById("front-camera-button")
@@ -455,18 +303,12 @@ const JewelViewer = ({
       <canvas
         id="viewer-3d"
         src="./assets/ring-data/ijwelldaimandshank.glb"
-        environment="./assets/hdr/studio_small_09_2k.hdr"
         style={{
           width: "100%",
           height: "calc(100vw * 0.3)",
           zIndex: 1,
           display: "block",
         }}
-        enableAntialiasing="true"
-        shadowQuality="high"
-        fogEnabled="true"
-        enablePostProcessing="true"
-        gammaCorrection="true"
       ></canvas>
       <button id="front-camera-button" style={{ opacity: 0 }}>
         Front Camera
