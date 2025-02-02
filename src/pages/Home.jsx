@@ -14,7 +14,7 @@ import * as THREE from "three";
 // import * as THREE from 'three';
 // import 'swiper/swiper-bundle.min.css'; // Import Swiper styles
 // import 'swiper/swiper-bundle.min.css';
-import './home.css';
+import "./home.css";
 import "swiper/css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,8 +26,9 @@ import html2canvas from "html2canvas";
 import DiamondList from "./DiamondList.jsx";
 import Swal from "sweetalert2"; // Import SweetAlert
 import InfoSection from "../component/InfoSection.jsx";
+import JewelViewer2 from "./ijewelviewer.jsx";
 
-const JewelViewer2 = ({
+const JewelViewer = ({
   diamonds,
   sideDaimandStonType,
   metal,
@@ -1789,9 +1790,7 @@ function Home() {
           <div
             key={step}
             className={`step w-full md:w-[346px] flex items-center justify-between p-4 ${
-              activestep >= step
-                ? "bg-[#F7F7F7] arrow-border-active"
-                : ""
+              activestep >= step ? "bg-[#F7F7F7] arrow-border-active" : ""
             }`}
           >
             <div className="content flex items-center gap-3 md:gap-4">
@@ -1803,8 +1802,8 @@ function Home() {
                   {step === 1
                     ? "Setting"
                     : step === 2
-                      ? "Choose a Diamond"
-                      : "Ring (Select Size)"}
+                    ? "Choose a Diamond"
+                    : "Ring (Select Size)"}
                 </h3>
 
                 {/* Conditional Subtitle */}
@@ -1815,8 +1814,8 @@ function Home() {
                   {step === 1
                     ? "Change"
                     : step === 2
-                      ? "Browse Diamond"
-                      : "Select Size"}
+                    ? "Browse Diamond"
+                    : "Select Size"}
                 </a>
               </div>
             </div>
@@ -1826,7 +1825,9 @@ function Home() {
               <img
                 src={images[step - 1]} // Dynamically select the image based on the step index
                 alt="Step Icon"
-                className={step === 1 ? "w-[50px] h-[50px]" : "w-[34px] h-[25px]"} 
+                className={
+                  step === 1 ? "w-[50px] h-[50px]" : "w-[34px] h-[25px]"
+                }
               />
             </div>
           </div>
@@ -1842,8 +1843,8 @@ function Home() {
             diamonds={DaimandStonType}
             sideDaimandStonType={sideDaimandStonType}
             metal={Ringmetal}
-          // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
-          // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
+            // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
+            // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
           />
 
           {retailersapi == "true" &&
@@ -1990,10 +1991,11 @@ function Home() {
                     {RingStyleDesigntypeitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box  ${RingStyleDesigntype == item.url
+                        className={`box-ring-selection-box  ${
+                          RingStyleDesigntype == item.url
                             ? "active !rounded-lg"
                             : ""
-                          }`}
+                        }`}
                         onClick={() => handlesetRingStyleDesigntype(item.url)}
                         RingStyleDesigntype-item={`${item.url}`}
                       >
@@ -2034,8 +2036,9 @@ function Home() {
                     {Daimandsettingitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box ${Daimandsetting == item ? "active !rounded-lg" : ""
-                          }`}
+                        className={`box-ring-selection-box ${
+                          Daimandsetting == item ? "active !rounded-lg" : ""
+                        }`}
                         onClick={() => handlesetDaimandsetting(item)}
                         Daimandsetting-item={`${item}`}
                       >
@@ -2143,8 +2146,9 @@ function Home() {
                       <div
                         key={index}
                         className={`box-ring-selection-box font-semibold
-                        ${sideDaimandlength == item ? "active !rounded-lg" : ""
-                          }`}
+                        ${
+                          sideDaimandlength == item ? "active !rounded-lg" : ""
+                        }`}
                         style={{ fontFamily: '"Agbalumo", sans-serif' }}
                         onClick={() => handlesetsideDaimandlength(item)}
                       >
@@ -2170,10 +2174,11 @@ function Home() {
                     {filteredDiamondtypeitems.map((item, index) => (
                       <div
                         key={index}
-                        className={`box-ring-selection-box  ${`./assets/all/${Daimandsetting}/${item.url}`
+                        className={`box-ring-selection-box  ${
+                          `./assets/all/${Daimandsetting}/${item.url}`
                             ? "test-active"
                             : ""
-                          } ${Daimandtype == item.url ? "active" : ""}`}
+                        } ${Daimandtype == item.url ? "active" : ""}`}
                         onClick={() => handlesetDaimandtype(item.url)}
                         Daimandtype-item={`${item.url}`}
                       >
