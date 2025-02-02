@@ -1483,7 +1483,18 @@ function Home() {
           className="w-full lg:w-3/5 p-3.5 top-0 bg-white"
           style={{ zIndex: "98", paddingTop: "20px" }}
         >
-          <JewelViewer2 />
+          {/* Main ring image */}
+          <img src="/ring.png" alt="Ring" className="w-full mb-4" />
+
+          {/* Two images side by side */}
+          <div className="flex flex-row gap-4">
+            <div className="w-1/2">
+              <img src="/ring2.png" alt="Diamond" className="w-full h-auto" />
+            </div>
+            <div className="w-1/2">
+              <img src="/ring3.png" alt="Ring" className="w-full h-auto" />
+            </div>
+          </div>
 
           {retailersapi === "true" && ifremcheck && !CheckUserRegister && (
             <div style={{ textAlign: "center", marginTop: "20px" }}>
