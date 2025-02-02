@@ -27,295 +27,222 @@ import DiamondList from "./DiamondList.jsx";
 import Swal from "sweetalert2"; // Import SweetAlert
 import InfoSection from "../component/InfoSection.jsx";
 
-const JewelViewer2 = ({
-  diamonds,
-  sideDaimandStonType,
-  metal,
-  shankurl = "3D Website",
-  halourl = "3D Website",
-}) => {
-  const [resetcamera, setresetcamera] = useState(false);
+const JewelViewer2 = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const viewerRef = useRef(null);
+
+  // Comprehensive mobile detection
+  const detectMobile = () => {
+    const toMatch = [
+      /Android/i,
+      /webOS/i,
+      /iPhone/i,
+      /iPad/i,
+      /iPod/i,
+      /BlackBerry/i,
+      /Windows Phone/i,
+    ];
+
+    return (
+      toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+      }) || window.innerWidth <= 768
+    );
+  };
+
+  // Performance check for mobile devices
+  const canRenderHighQuality = () => {
+    // Check device capabilities
+    const deviceMemory = navigator.deviceMemory || 4; // Default to 4GB if not available
+    const hardwareConcurrency = navigator.hardwareConcurrency || 4; // Default to 4 cores
+
+    return deviceMemory >= 4 && hardwareConcurrency >= 4;
+  };
+
   useEffect(() => {
-    const viewer = new CoreViewerApp({
-      canvas: document.getElementById("viewer-3d"),
-    });
+    // Detect mobile and set state
+    const checkMobile = () => {
+      const mobile = detectMobile();
+      setIsMobile(mobile);
+      console.log(`Mobile Device Detected: ${mobile}`);
+    };
 
-    viewer
-      .initialize({
-        caching: true,
-        plugins: {
-          MaterialConfiguratorPlugin: true,
+    // Initial check
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile);
+
+    // Fallback loading indicator
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+      console.warn("3D Viewer loading timed out");
+    }, 15000); // 15 seconds timeout
+
+    try {
+      const viewer = new CoreViewerApp({
+        canvas: document.getElementById("viewer-3d"),
+        renderManager: {
+          // Adaptive rendering based on device capabilities
+          displayCanvasScaling: isMobile
+            ? canRenderHighQuality()
+              ? Math.min(window.devicePixelRatio, 1.5)
+              : Math.min(window.devicePixelRatio, 1)
+            : window.devicePixelRatio,
         },
-        ui: {
-          logo: false,
-          branding: false,
-        },
-      })
-      .then(async (viewer) => {
-        var modelsize;
-        const diamondPlugin = await viewer.getOrAddPlugin(DiamondPlugin);
-        var materialConfiguratorPlugin = await viewer.getOrAddPlugin(
-          MaterialConfiguratorPlugin
-        );
-        // const materialConfigurator = viewer.plugins.get('materialConfiguratorPlugin');
-        diamondPlugin.setKey("8KA8HZSP5WDG35XWHADNKPWMCY7F9J4G-HB7Q2BYGER");
+      });
 
-        viewer.renderManager.displayCanvasScaling = window.devicePixelRatio;
-        const tarunElement = document.getElementById("ring-3d-output");
-        if (tarunElement) {
-          tarunElement.classList.add("active");
-        }
-        const loadingScreen = viewer.getPlugin(LoadingScreenPlugin);
-        if (loadingScreen) {
-          loadingScreen.enabled = false;
-        }
+      viewer
+        .initialize({
+          caching: true,
+          plugins: {},
+          ui: {
+            logo: false,
+            branding: false,
+          },
+          background: "#FFFFFF",
+        })
+        .then(async (viewer) => {
+          // Clear loading timeout
+          clearTimeout(loadingTimeout);
 
-        const config = await viewer.addPlugin(VariationConfiguratorPlugin);
-        await config.importPath("/assets/config.json");
-        await viewer
-          .getManager()
-          .importer.importPath("./assets/3D Websitetest2.vjson", {
-            processImported: true,
-          })
-          .then(() => {});
-        viewer.scene.background = "#ffffff";
-        document.querySelectorAll(".object").forEach((el) => {
-          const index = parseInt(el.getAttribute("data-index"));
-          const category = config.variations.objects.find(
-            (cat) => cat.name === el.getAttribute("data-category")
-          );
-          const type = "objects";
-          el.addEventListener("click", async () => {
-            await config.applyVariation(category, index, type);
+          const diamondPlugin = await viewer.getOrAddPlugin(DiamondPlugin);
+          diamondPlugin.setKey("8KA8HZSP5WDG35XWHADNKPWMCY7F9J4G-HB7Q2BYGER");
 
-            // optional - sample for making changes to the loaded object. (commented below)
-            // get the object reference
-            const obj = viewer.scene.findObjectsByName(
-              config.utils.getName(category)
-            )[0]?.modelObject;
-            if (!obj) return;
-            var value = metal;
-            var gem01 = diamonds;
-            var gem02 = sideDaimandStonType[0];
-            var gem03 = sideDaimandStonType[1];
-            var gem04 = sideDaimandStonType[2];
-            // console.log(gem01);
-            // setTimeout(() => {
-            document
-              .querySelectorAll(".metal-selection.active")
-              .forEach((box) => {
-                // if (box.textContent == metal) {
-                box.click();
-                // }
-              });
-            document
-              .querySelectorAll("#GEM01 .box-ring-selection-box.active")
-              .forEach((box) => {
-                // if (box.textContent == gem01) {
-                box.click();
-                // }
-              });
-            document
-              .querySelectorAll("#GEM02 .box-ring-selection-box.active")
-              .forEach((box) => {
-                // if (box.textContent == gem02) {
-                box.click();
-                // }
-              });
-            document
-              .querySelectorAll("#GEM03 .box-ring-selection-box.active")
-              .forEach((box) => {
-                // if (box.textContent == gem03) {
-                box.click();
-                // }
-              });
-            document
-              .querySelectorAll("#GEM04 .box-ring-selection-box.active")
-              .forEach((box) => {
-                // if (box.textContent == gem04) {
-                box.click();
-                // }
-              });
-            // }, 1000);
-          });
-          // apply the first one
-          if (index === 0) el.click();
-          var value = metal;
-          var gem01 = diamonds;
-          var gem02 = sideDaimandStonType[0];
-          var gem03 = sideDaimandStonType[1];
-          var gem04 = sideDaimandStonType[2];
-          // console.log(gem01);
-          setTimeout(() => {
-            document
-              .querySelectorAll(".box-ring-selection-box")
-              .forEach((box) => {
-                if (box.textContent == value) {
-                  box.click();
-                }
-              });
-            document
-              .querySelectorAll("#GEM01 .box-ring-selection-box")
-              .forEach((box) => {
-                if (box.textContent == gem01) {
-                  box.click();
-                }
-              });
-            document
-              .querySelectorAll("#GEM02 .box-ring-selection-box")
-              .forEach((box) => {
-                if (box.textContent == gem02) {
-                  box.click();
-                }
-              });
-            document
-              .querySelectorAll("#GEM03 .box-ring-selection-box")
-              .forEach((box) => {
-                if (box.textContent == gem03) {
-                  box.click();
-                }
-              });
-            document
-              .querySelectorAll("#GEM04 .box-ring-selection-box")
-              .forEach((box) => {
-                if (box.textContent == gem04) {
-                  box.click();
-                }
-              });
-          }, 1000);
+          // Adaptive render settings
+          viewer.renderManager.displayCanvasScaling = isMobile
+            ? canRenderHighQuality()
+              ? Math.min(window.devicePixelRatio, 1.5)
+              : Math.min(window.devicePixelRatio, 1)
+            : window.devicePixelRatio;
+
+          const tarunElement = document.getElementById("ring-3d-output");
+          if (tarunElement) {
+            tarunElement.classList.add("active");
+          }
+
+          // Disable loading screen
+          const loadingScreen = viewer.getPlugin(LoadingScreenPlugin);
+          if (loadingScreen) {
+            loadingScreen.enabled = false;
+          }
+
+          viewer.scene.background = "#FFFFFF";
+
+          // Lightweight loading for mobile
+          const modelToLoad = isMobile
+            ? "./assets/ring-data/Ajaffe 0512-2.glb"
+            : "./assets/ring-data/ijwelldaimandshank.glb";
+
+          Promise.all([viewer.load(modelToLoad)])
+            .then(() => {
+              setIsLoading(false);
+              if (tarunElement) {
+                setTimeout(() => {
+                  tarunElement.classList.remove("active");
+                }, 5000);
+              }
+            })
+            .catch((error) => {
+              setIsLoading(false);
+              console.error("Model loading error: ", error);
+              if (tarunElement) {
+                tarunElement.classList.remove("active");
+                tarunElement.innerHTML = `
+                                <div style="text-align: center; color: red; padding: 20px;">
+                                    <p>Unable to load 3D model</p>
+                                    <small>${error.message}</small>
+                                </div>
+                            `;
+              }
+            });
+
+          // Mobile-specific touch handling
+          if (isMobile) {
+            const canvas = document.getElementById("viewer-3d");
+            canvas.addEventListener(
+              "touchstart",
+              (e) => {
+                e.preventDefault();
+              },
+              { passive: false }
+            );
+            canvas.addEventListener(
+              "touchmove",
+              (e) => {
+                e.preventDefault();
+              },
+              { passive: false }
+            );
+          }
+        })
+        .catch((initError) => {
+          setIsLoading(false);
+          console.error("Viewer initialization error:", initError);
         });
 
-        viewer.scene.background = "#FFFFFF";
-
-        const Daimandsetting = document
-          .querySelector(".box-ring-selection-box.active[Daimandsetting-item]")
-          .getAttribute("Daimandsetting-item");
-        const RingStyleDesigntype = document
-          .querySelector(
-            ".box-ring-selection-box.active[RingStyleDesigntype-item]"
-          )
-          .getAttribute("RingStyleDesigntype-item");
-        const Daimandtype = document
-          .querySelector(".box-ring-selection-box.active[Daimandtype-item]")
-          .getAttribute("Daimandtype-item");
-
-        if (tarunElement) {
-          setTimeout(() => {
-            tarunElement.classList.remove("active");
-            document.querySelector(".daimand-body").classList.remove("active");
-          }, 3000);
-          setTimeout(() => {
-            document.querySelector(".daimand-body").classList.remove("active");
-          }, 5000);
-        }
-
-        document
-          .getElementById("front-camera-button")
-          .addEventListener("click", () => {
-            const cameraX = document
-              .getElementById("viewer-3d")
-              .getAttribute("cameraX");
-            const cameraY = document
-              .getElementById("viewer-3d")
-              .getAttribute("cameraY");
-            const cameraZ = document
-              .getElementById("viewer-3d")
-              .getAttribute("cameraZ");
-            viewer.scene.activeCamera.position.set(
-              cameraX / 2,
-              cameraY + 2,
-              cameraZ * 10
-            );
-          });
-        document
-          .getElementById("left-camera-button")
-          .addEventListener("click", () => {
-            const cameraX = document
-              .getElementById("viewer-3d")
-              .getAttribute("cameraX");
-            const cameraY = document
-              .getElementById("viewer-3d")
-              .getAttribute("cameraY");
-            const cameraZ = document
-              .getElementById("viewer-3d")
-              .getAttribute("cameraZ");
-            viewer.scene.activeCamera.position.set(
-              cameraX * 10,
-              cameraY + 2,
-              cameraZ / 2
-            );
-          });
-        var value = metal;
-        var gem01 = diamonds;
-        var gem02 = sideDaimandStonType[0];
-        var gem03 = sideDaimandStonType[1];
-        var gem04 = sideDaimandStonType[2];
-        // console.log(gem01);
-        setTimeout(() => {
-          document
-            .querySelectorAll(".box-ring-selection-box")
-            .forEach((box) => {
-              if (box.textContent == value) {
-                box.click();
-              }
-            });
-          document
-            .querySelectorAll("#GEM01 .box-ring-selection-box")
-            .forEach((box) => {
-              if (box.textContent == gem01) {
-                box.click();
-              }
-            });
-          document
-            .querySelectorAll("#GEM02 .box-ring-selection-box")
-            .forEach((box) => {
-              if (box.textContent == gem02) {
-                box.click();
-              }
-            });
-          document
-            .querySelectorAll("#GEM03 .box-ring-selection-box")
-            .forEach((box) => {
-              if (box.textContent == gem03) {
-                box.click();
-              }
-            });
-          document
-            .querySelectorAll("#GEM04 .box-ring-selection-box")
-            .forEach((box) => {
-              if (box.textContent == gem04) {
-                box.click();
-              }
-            });
-        }, 1000);
-        // console.log(sideDaimandStonType);
-        setresetcamera(false);
-      });
-    return () => {
-      viewer.dispose();
-      // materialConfiguratorPlugin.reset();
-    };
+      // Cleanup
+      return () => {
+        window.removeEventListener("resize", checkMobile);
+      };
+    } catch (error) {
+      setIsLoading(false);
+      console.error("Viewer setup error:", error);
+    }
   }, []);
-  // }, [resetcamera, shankurl, halourl]);
 
   return (
-    <div id="ring-3d-output" className="sticky" style={{ width: "100%" }}>
+    <div
+      id="ring-3d-output"
+      className={`active-viewer-check ${isMobile ? "mobile-viewer" : ""}`}
+      style={{
+        width: "100%",
+        height: isMobile ? "50vh" : "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      {isLoading && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(255,255,255,0.8)",
+            zIndex: 10,
+          }}
+        >
+          <div>Loading 3D Viewer...</div>
+        </div>
+      )}
       <canvas
+        ref={viewerRef}
         id="viewer-3d"
         src="./assets/ring-data/ijwelldaimandshank.glb"
+        environment="./assets/hdr/studio_small_09_2k.hdr"
         style={{
           width: "100%",
-          height: "calc(100vw * 0.3)",
+          height: "100%",
           zIndex: 1,
           display: "block",
+          maxWidth: "100%",
+          maxHeight: "100%",
         }}
+        enableAntialiasing="true"
+        shadowQuality={isMobile ? "low" : "medium"}
+        fogEnabled="false"
+        enablePostProcessing="false"
+        gammaCorrection="true"
       ></canvas>
-      <button id="front-camera-button" style={{ opacity: 0 }}>
-        Front Camera
-      </button>
-      <button id="left-camera-button" style={{ opacity: 0 }}>
-        Left Camera
-      </button>
     </div>
   );
 };
@@ -345,7 +272,6 @@ const Loader = () => (
 
 function Home() {
   const [activestep, setactivestep] = useState(1);
-  const [Shankbandtype, setShankbandtype] = useState("Most Popular");
   const [RingStyleDesigntype, setRingStyleDesigntype] = useState("Shank.glb");
   const [Daimandtype, setDaimandtype] = useState("Pear.glb");
   const [DaimandCarat, setDaimandCarat] = useState("1.00 ct");
@@ -362,16 +288,10 @@ function Home() {
     "Diamond",
     "Diamond",
   ]);
-  const [count, setCount] = useState(0);
   const [pricing, setpricing] = useState("$0");
-  const [roundModel, setRoundModel] = useState("1.00ct.glb");
   const [shapeModel, setShapeModel] = useState("Round");
-  const [prongModel, setProngModel] = useState("4 Prong Round/4 Prong Round_");
-  const [ringmetalModel, setRingcolorModel] = useState("#b1b1b1");
-  const [daimandModel, setDaimandcolorModel] = useState("#F6F6F2");
-  const [showPopup, setShowPopup] = useState(false);
+
   const [brevoId, setBrevoId] = useState("");
-  const [brevoToken, setBrevoToken] = useState("");
   const [matchingBand, setMatchingBand] = useState(1);
   const [retailer, setRetailer] = useState("false");
   const [retailerid, setRetailerid] = useState("");
@@ -384,15 +304,12 @@ function Home() {
   const [contactName, setContactName] = useState("");
   const [contactPhone, setContactPhone] = useState("");
   const [contactEmail, setContactEmail] = useState("");
-  const [RGcontactName, setRGContactName] = useState("");
-  const [RGcontactPhone, setRGContactPhone] = useState("");
-  const [RGcontactEmail, setRGContactEmail] = useState("");
+
   const [retailers, setRetailers] = useState(
     DEFAULT_RETAILERS.jewelry_retailers
   );
   const [retailersapi, setRetailersapi] = useState("false");
   const [selectedRetailer, setSelectedRetailer] = useState(null);
-  const [transaction, setTransaction] = useState(false);
   const [CheckUserRegister, setCheckUserRegister] = useState(false);
   const [ifremId, setifremId] = useState("test");
   const [showPutOnMyWebsitePopup, setShowPutOnMyWebsitePopup] = useState(false);
@@ -404,54 +321,11 @@ function Home() {
   const [retailerType, setRetailerType] = useState("brand");
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Add loading state
-  const [brevoIdStrength, setBrevoIdStrength] = useState(null);
-  const [brevoKeyStrength, setBrevoKeyStrength] = useState(null);
-  const [brevoIdError, setBrevoIdError] = useState("");
-  const [brevoKeyError, setBrevoKeyError] = useState("");
+
   const [checkuserformifream, setCheckuserformifream] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false); // Add this state
   const [glburl, setGlburl] = useState("3D Website");
 
-  const handleRetailerTypeChange = async (e) => {
-    setRetailerType(e.target.value);
-    const userId = localStorage.getItem("userId");
-    if (userId) {
-      try {
-        const updatedUserData = {
-          email: localStorage.getItem("email"),
-          name: localStorage.getItem("name"),
-          brevo_id: localStorage.getItem("brevo_id"),
-          brevo_key: localStorage.getItem("brevo_key"),
-          email_send_from_brevo: localStorage.getItem("email_send_from_brevo"),
-          role: e.target.value,
-        };
-
-        // Update user data
-        const updateResponse = await fetch(
-          `https://amgdynamics.horizonbeam.com/update-user/${userId}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updatedUserData),
-          }
-        );
-
-        if (!updateResponse.ok) {
-          Swal.fire({
-            title: "Error!",
-            text: "Failed to update user",
-            icon: "error",
-            confirmButtonText: "OK",
-          });
-        }
-        localStorage.setItem("role", e.target.value);
-      } catch (err) {
-        console.error(err.message);
-      }
-    }
-  };
   useEffect(() => {
     const fetchRetailers = async () => {
       setLoading(true); // Start loading
@@ -483,34 +357,6 @@ function Home() {
     setGSsystum(true);
   };
 
-  const handleShapeModelChange = (shape) => {
-    setShapeModel(shape);
-  };
-
-  const handleMatchingBand = (step) => {
-    setMatchingBand(step);
-    // fetchPrice(step);
-  };
-  // const fetchPrice = async (step) => {
-  //   try {
-  //     const response = await fetch('https://mindtechsolutions.com/StylePriceAPI/api/cntrl/styleprice', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ style_no: 'GMR46578' }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok');
-  //     }
-
-  //     const data = await response.json();
-  //     setpricing(`$${data.price.toFixed(2)}`); // Update pricing with fetched price
-  //   } catch (error) {
-  //     console.error('Error fetching price:', error);
-  //   }
-  // };
   useEffect(() => {
     const fetchPrice = async () => {
       try {
@@ -664,9 +510,7 @@ function Home() {
 
     checkToken();
   }, []);
-  const handlesetShankbandtype = (value) => {
-    setShankbandtype(value);
-  };
+
   const handlesetRingStyleDesigntype = (value) => {
     setRingStyleDesigntype(value);
     if (value === "Shank 2.glb") {
@@ -837,27 +681,7 @@ function Home() {
       }
     }
   };
-  const handlesetactivestep = (size) => {
-    setactivestep(size);
-  };
-  const handleModelChange = (size) => {
-    setRoundModel(size);
-  };
-  const handleprongModelChange = (size) => {
-    setProngModel(size);
-  };
-  const handleRingcolorModel = (color) => {
-    setRingcolorModel(color);
-  };
-  const handleDaimandcolorModel = (color) => {
-    setDaimandcolorModel(color);
-  };
-  const Shankbandtypeitems = [
-    "Category 1",
-    "Category 2",
-    "Category 3",
-    "Category 4",
-  ];
+
   const RingStyleDesigntypeitems = [
     {
       name: "Shank 1",
@@ -1144,14 +968,7 @@ function Home() {
       color: "#E0115F",
     },
   ];
-  const gemcount = [
-    "0",
-    "1",
-    "2",
-    // '3',
-    // '4',
-    // '5'
-  ];
+  const gemcount = ["0", "1", "2"];
   const DaimandCaratitems = [
     "1.00 ct",
     "1.50 ct",
@@ -1194,13 +1011,7 @@ function Home() {
     { name: "18K Yellow Gold", code: "#FFD700" },
     { name: "18K Rose Gold", code: "#E0BFB8" },
   ];
-  const handleNextClick = () => {
-    setShowPopup(true);
-  };
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
   const handleCreateTransactionSubmit = async () => {
     setIsLoading(true);
     const formData = new FormData();
@@ -1539,15 +1350,6 @@ function Home() {
     (item) => item === DaimandCarat
   );
 
-  const swiperBreakpoints = useMemo(
-    () => ({
-      0: { slidesPerView: 2, spaceBetween: 0 },
-      520: { slidesPerView: 3, spaceBetween: 0 },
-      900: { slidesPerView: 4, spaceBetween: 0 },
-    }),
-    []
-  );
-
   const GemItem = ({ gemIndex }) => {
     const gemId = `GEM ${gemIndex}`;
     const isGrayOut = Daimandsetting === "Classic Prong";
@@ -1605,7 +1407,7 @@ function Home() {
   const images = [ringIcon, diamondIcon, ring];
 
   return (
-    <div className="daimand-body active">
+    <div className="active">
       {loading && <Loader />}
 
       <div>
@@ -1681,91 +1483,19 @@ function Home() {
           className="w-full lg:w-3/5 p-3.5 top-0 bg-white"
           style={{ zIndex: "98", paddingTop: "20px" }}
         >
-          <JewelViewer2
-            diamonds={DaimandStonType}
-            sideDaimandStonType={sideDaimandStonType}
-            metal={Ringmetal}
-            // shankurl={`./assets/all/${Daimandsetting}/${RingStyleDesigntype}`}
-            // halourl={`./assets/all/${Daimandsetting}/${Daimandtype}`}
-          />
+          <JewelViewer2 />
 
-          {retailersapi == "true" &&
-            ifremcheck &&
-            CheckUserRegister == false && (
-              <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <button
-                  type="button"
-                  className="add-to-website-button"
-                  onClick={() => setShowPutOnMyWebsitePopup(true)}
-                >
-                  Put On My Website
-                </button>
-              </div>
-            )}
-
-          <div id="ui">
-            <div>
-              <span>Basket</span>
-              <button className="object" data-category="Basket" data-index="0">
-                Cushion Halo
-              </button>
-              <button className="object" data-category="Basket" data-index="1">
-                Empty
-              </button>
-              <button className="object" data-category="Basket" data-index="2">
-                Pear Halo
+          {retailersapi === "true" && ifremcheck && !CheckUserRegister && (
+            <div style={{ textAlign: "center", marginTop: "20px" }}>
+              <button
+                type="button"
+                className="add-to-website-button"
+                onClick={() => setShowPutOnMyWebsitePopup(true)}
+              >
+                Put On My Website
               </button>
             </div>
-            <div>
-              <span>Ring</span>
-              <button className="object" data-category="Ring" data-index="0">
-                Alliance
-              </button>
-              <button className="object" data-category="Ring" data-index="1">
-                Baguette
-              </button>
-            </div>
-            <div>
-              <span>Metal</span>
-              <button className="material" data-category="Metal" data-index="0">
-                rose
-              </button>
-              <button className="material" data-category="Metal" data-index="1">
-                white
-              </button>
-            </div>
-            <div>
-              <span>Diamond</span>
-              <button
-                className="diamond"
-                data-category="Diamond"
-                data-index="0"
-              >
-                white
-              </button>
-              <button
-                className="diamond"
-                data-category="Diamond"
-                data-index="1"
-              >
-                sapphire
-              </button>
-              <button
-                className="diamond"
-                data-category="Diamond"
-                data-index="2"
-              >
-                emerald
-              </button>
-              <button
-                className="diamond"
-                data-category="Diamond"
-                data-index="3"
-              >
-                brown
-              </button>
-            </div>
-          </div>
+          )}
         </div>
         <div className="w-full lg:w-2/5 p-3.5">
           <div className="">
@@ -2326,157 +2056,7 @@ function Home() {
           </div>
         </div>
       )}
-      {/* <div className={`flex flex-wrap main-contant-container ${ activestep === 3 ? "active" : "" }`}>
-        {retailer === 'true' ? (
-            <div className='w-full md:w-6/12 mx-auto'>
-              <div className="popup-left">
-                <h2>User Contact Details</h2>
-              </div>
-              <form onSubmit={(e) => { e.preventDefault(); handleCreateTransactionSubmit(); }}>
-                <div className="input-group">
-                  <label htmlFor="contactName">Name</label>
-                  <input 
-                    type="text" 
-                    id="contactName" 
-                    value={contactName} 
-                    onChange={(e) => setContactName(e.target.value)} 
-                    required 
-                  />
-                </div>
-                <div className="input-group">
-                  <label htmlFor="contactPhone">Phone Number</label>
-                  <input 
-                    type="tel" 
-                    id="contactPhone" 
-                    value={contactPhone} 
-                    onChange={(e) => setContactPhone(e.target.value)} 
-                    required 
-                  />
-                </div>
-                <div className="input-group">
-                  <label htmlFor="contactEmail">Email ID</label>
-                  <input 
-                    type="email" 
-                    id="contactEmail" 
-                    value={contactEmail} 
-                    onChange={(e) => setContactEmail(e.target.value)} 
-                    required 
-                  />
-                </div>
-                <input type="hidden" id="retailerid" value={retailerid} />
-                <button type="submit" className="action-btn ">
-                  Submit
-                </button>
-              </form>
-              </div>
-        ) : (
-          <div className='w-full md:w-6/12 mx-auto'>
-            <div className="popup-left">
-              <h2>Retailer List</h2>
-            </div>
-            <div className="popup-right">
-              <div className="retailer-list">
-                {retailers.map(retailer => (
-                  <div key={retailer.ID} className="retailer-item">
-                    <h3>{retailer.RetailerName}</h3>
-                    <p>Location: {retailer.RetailerCity}</p>
-                    <button 
-                      className="select-btn"
-                      onClick={() => handleRetailerSelect('test@'+retailer.ID)}
-                    >
-                      Select
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div> */}
-      {/* {showContactPopup && (
-        <div className="popup-overlay" onClick={(e) => {
-          if (e.target.className === 'popup-overlay') {
-            setShowContactPopup(false);
-            if(retailersapi === 'false'){
-              setRetailer('false')
-            }
-          }
-        }}>
-          {retailer === 'true' ? (
-            <div className="popup-content">
-              <button className="close-btn" onClick={() => setShowContactPopup(false)}>
-                <i className="fas fa-times"></i>
-              </button>
-              <div className="popup-left">
-                <h2>User Contact Details</h2>
-              </div>
-              <div className="popup-right">
-                <form onSubmit={(e) => { e.preventDefault(); handleContactSubmit(); }}>
-                  <div className="input-group">
-                    <label htmlFor="contactName">Name</label>
-                    <input 
-                      type="text" 
-                      id="contactName" 
-                      value={contactName} 
-                      onChange={(e) => setContactName(e.target.value)} 
-                      required 
-                    />
-                  </div>
-                  <div className="input-group">
-                    <label htmlFor="contactPhone">Phone Number</label>
-                    <input 
-                      type="tel" 
-                      id="contactPhone" 
-                      value={contactPhone} 
-                      onChange={(e) => setContactPhone(e.target.value)} 
-                      required 
-                    />
-                  </div>
-                  <div className="input-group">
-                    <label htmlFor="contactEmail">Email ID</label>
-                    <input 
-                      type="email" 
-                      id="contactEmail" 
-                      value={contactEmail} 
-                      onChange={(e) => setContactEmail(e.target.value)} 
-                      required 
-                    />
-                  </div>
-                  <input type="hidden" id="retailerid" value={retailerid} />
-                  <button type="submit" className="action-btn ">
-                    Submit
-                  </button>
-                </form>
-              </div>
-            </div>
-          ) : (
-            <div className="popup-content">
-              <button className="close-btn" onClick={() => setShowContactPopup(false)}>
-                <i className="fas fa-times"></i>
-              </button>
-              <div className="popup-left">
-                <h2>Retailer List</h2>
-              </div>
-              <div className="popup-right">
-                <div className="retailer-list">
-                  {retailers.map(retailer => (
-                    <div key={retailer.ID} className="retailer-item">
-                      <h3>{retailer.RetailerName}</h3>
-                      <p>Location: {retailer.RetailerCity}</p>
-                      <button 
-                        className="select-btn"
-                        onClick={() => handleRetailerSelect(retailer.ID)}
-                      >
-                        Select
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      )} */}
+
       {showRegisterPopup && (
         <div
           className="popup-overlay"
