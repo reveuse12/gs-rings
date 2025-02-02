@@ -26,6 +26,7 @@ import html2canvas from "html2canvas";
 import DiamondList from "./DiamondList.jsx";
 import Swal from "sweetalert2"; // Import SweetAlert
 import InfoSection from "../component/InfoSection.jsx";
+import Navbar from "../component/Navbar.jsx";
 
 const JewelViewer2 = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -728,21 +729,13 @@ function Home() {
       img: "/assets/shape-svg/princess.svg",
       url: `Princess.glb`,
     },
-    // {
-    //   name:'Asscher',
-    //   img:'/assets/shape-svg/asscher.svg',
-    //   url: './assets/all/Single Halo/Shank 3.glb',
-    // },
+
     {
       name: "Marquise",
       img: "/assets/shape-svg/marquise.svg",
       url: `Marquise.glb`,
     },
-    // {
-    //   name:'Heart',
-    //   img:'/assets/shape-svg/heart.svg',
-    //   url: './assets/all/Single Halo/Shank 3.glb',
-    // },
+
     {
       name: "Radiant",
       img: "/assets/shape-svg/radiant.svg",
@@ -1409,6 +1402,7 @@ function Home() {
   return (
     <div className="active">
       {loading && <Loader />}
+      <Navbar />
 
       <div>
         <div
