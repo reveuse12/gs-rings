@@ -1402,9 +1402,10 @@ function Home() {
   return (
     <div className="active">
       {loading && <Loader />}
-      <Navbar />
 
       <div>
+        <Navbar />
+
         <div
           className="flex justify-end mx-auto"
           style={{ maxWidth: "1300px" }}
